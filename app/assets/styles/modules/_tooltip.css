@@ -1,0 +1,52 @@
+.tooltip {
+    cursor: help;
+
+    & span {
+        border-bottom: 1px dotted $gray;
+    }
+
+    &__content {
+        color: $white;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        position: absolute;
+        background-color: $secondary-color;
+        z-index: 100;
+        padding: 15px;
+        border-radius: 3px;
+     
+        &:after /* triangle decoration */
+        {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid $secondary-color;
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            margin-left: -10px;
+        }
+     
+        &__top:after
+        {
+            border-top-color: transparent;
+            border-bottom: 10px solid #111;
+            top: -20px;
+            bottom: auto;
+        }
+     
+        &__left:after
+        {
+            left: 10px;
+            margin: 0;
+        }
+     
+        &__right:after
+        {
+            right: 10px;
+            left: auto;
+            margin: 0;
+        }
+    }
+}

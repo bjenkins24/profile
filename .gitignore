@@ -1,0 +1,6 @@
+!*.gitkeep
+*.sublime-project
+*.sublime-workspace
+node_modules
+sftp-config.json
+.DS_STORE

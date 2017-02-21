@@ -1,0 +1,24 @@
+.site-header {
+    margin-top: 100vh;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    background: $white;
+    color: white;
+    transition: background .3s ease-out;
+
+    &--fixed {
+        position: fixed;
+        z-index: 4;
+        top: 0;
+        margin-top: 0;
+    }
+
+    &--gray {
+        background-color: rgba($gray, .8);
+
+        a {
+            color: $white;
+        }
+    }
+}

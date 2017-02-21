@@ -1,0 +1,40 @@
+.zoom-hover {
+    transition: transform .3s ease-out;
+
+    &__overlay {
+        transition: all .3s ease-in-out;
+        opacity: 0;
+        background-color: rgba(0,0,0,0.3); 
+        width: 96%;;
+        height: 110%;
+        top: -5%;    
+        left: -1%;
+        position: absolute;
+        border-radius: 8px;
+        padding: 2rem;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+
+        &__title {
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            font-size: 3rem;
+        }
+    }
+
+    &:hover {
+        transform: scale(1.04);
+
+        & .zoom-hover__overlay {
+           opacity: 1;
+                   }
+    }
+
+    &--clickable {
+        cursor: pointer;
+    }
+}

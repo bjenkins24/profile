@@ -1,0 +1,39 @@
+.primary-nav {
+
+    @mixin clearfix;
+
+    ul {
+        margin: 0;
+        list-style: none;
+
+        li {
+            float: left;
+        }
+
+        li:last-child {
+            margin-right: 0;
+        }
+
+        a {
+            display: block;
+            padding: 1.2rem 2rem;
+
+            &:hover {
+                background: $white;
+                color: $primary-color;
+            }
+
+            &.is-current-link {
+                color: $primary-color;
+            }
+        }
+
+    }
+
+    ul.pull-right {
+        float: right;
+    }
+
+
+
+}

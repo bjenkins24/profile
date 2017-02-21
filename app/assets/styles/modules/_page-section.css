@@ -1,0 +1,70 @@
+.page-section {
+    padding: 2.5rem 0;
+
+    &--white {
+        background: $white;
+    }
+
+    &__title {
+        text-align: center; 
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: .5rem;
+        font-size: 3rem;
+        margin-bottom: 1.3rem;
+
+        &--white {
+            color: $white;
+        }
+    }
+
+    &__subtitle {
+        text-align: center;
+        font-weight: 300;
+        font-size: 1.3rem;
+
+        &--white {
+            color: $white;
+        }
+    }
+
+    &__section-title {
+        font-size: 2rem;
+        font-weight: 300;
+        color: #4f7b78;
+        text-shadow: 1px 1px 1px rgba(255,255,255, .1);
+
+        &--white {
+            color: #f6f6f4;
+            text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+
+        &--no-t-margin {
+            margin-top: 0;
+        }
+    }
+
+    &__separator {
+       margin: 2rem 0; 
+       background-color: $white-dark;
+
+       &--white {
+            background-color: $white;
+       }
+    }
+
+    
+    &--blue-styled {
+        background: url('$img-dir-source/blue-section.png');
+        color: $white;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+
+        &--border {
+            border: 4px solid #97c5c1;
+            box-shadow: inset 0 0 0 2px #eae7d1;            
+        }
+
+    }
+
+
+}

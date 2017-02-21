@@ -1,0 +1,29 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: $gray;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: $gray;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}

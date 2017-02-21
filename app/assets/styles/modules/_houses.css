@@ -1,0 +1,78 @@
+.houses {
+
+    &__left {
+        background: url('$img-dir-xsmall/houses-left.png');
+        width: 150px;
+        height: 124px;
+        position: fixed;
+        bottom: 0;
+        z-index: 2;
+
+        @mixin atSmall {
+            background: url('$img-dir-small/houses-left.png');
+            width: 550px;
+            height: 470px;
+        }
+        @mixin atMedium {
+            background: url('$img-dir-medium/houses-left.png');
+            background-size: cover;
+            width: 700px;
+            height: 590px;
+        }
+        @mixin atLarge {
+            background: url('$img-dir-large/houses-left.png');
+            width: 823px;
+            height: 704px;
+        }
+    }
+
+    &__middle {
+        background: url('$img-dir-xsmall/houses-middle.png');
+        height: 93px;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+
+        @mixin atSmall {
+            background: url('$img-dir-small/houses-middle.png');
+            height: 328px;
+        }
+        @mixin atMedium {
+            background: url('$img-dir-medium/houses-middle.png');
+            height: 415px;
+            bottom: -8px;
+        }
+        @mixin atLarge {
+            background: url('$img-dir-large/houses-middle.png');
+            height: 488px;
+            bottom: 0;
+        }
+    }
+
+    &__right {
+        background: url('$img-dir-xsmall/houses-right.png');
+        width: 150px;
+        height: 124px;
+        position: fixed;
+        right: 0;
+        z-index: 2;
+        
+        @mixin atSmall {
+            background: url('$img-dir-small/houses-right.png');
+            width: 550px;
+            height: 406px;
+        }
+        @mixin atMedium {
+            background: url('$img-dir-medium/houses-right.png');
+            width: 700px;
+            height: 517px;
+            bottom: -9px;
+        }
+        @mixin atLarge {
+            background: url('$img-dir-large/houses-right.png');
+            width: 823px;
+            height: 608px;
+            bottom: 0;
+        }
+    }
+}

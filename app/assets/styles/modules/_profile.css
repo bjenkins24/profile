@@ -1,0 +1,16 @@
+.profile {
+    z-index: 3;
+    position: relative;
+
+    &__photo {
+        margin: 0 auto;
+        display: block;
+        border-radius: 50%;
+        border: 6px solid $white-dark;
+    }
+
+    &--t-full-margin {
+        margin-top: 100vh;
+        padding-top: 6.18rem;
+    }
+}

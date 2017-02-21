@@ -1,0 +1,36 @@
+.abilities {
+    z-index: 3;
+    position: relative;
+
+    &__list {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: .5rem 0;
+        }
+
+        li:hover {
+            background: #ebebeb;
+        }
+
+        &--no-hover li:hover {
+            background: transparent; 
+            cursor: default;
+        }
+
+        &__label {
+            font-size: 1.1rem;
+        }
+
+        &__level {
+            float: right;
+
+            span {
+                float: left;
+                border-bottom: 0;
+            }
+        }
+    }
+
+}
