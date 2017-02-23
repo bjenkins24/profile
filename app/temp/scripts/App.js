@@ -12091,7 +12091,7 @@ var _Lightbox2 = _interopRequireDefault(_Lightbox);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var navigation = new _Navigation2.default();
-new _RevealOnScroll2.default((0, _jquery2.default)(".abilities__list li, .profile--reveal, .experience--reveal, .projects .row"), "100%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".abilities__list, .profile--reveal, .experience--reveal, .projects .row"), "100%");
 var toolTip = new _Tooltip2.default();
 var zoomHover = new _ZoomHover2.default();
 var lightbox = new _Lightbox2.default();

@@ -1,0 +1,22 @@
+.btn {
+    padding: .7rem;
+    display: inline-block;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    border-radius: 5px;
+
+    &--primary {
+        background-color: $primary-color;
+        color: $white;
+    
+        &:hover {
+            background-color: $primary-color-dark;
+            color: $white;
+            text-shadow: none;
+        }
+    }
+
+    &--centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

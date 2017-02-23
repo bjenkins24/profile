@@ -13,4 +13,20 @@
         margin-top: 100vh;
         padding-top: 6.18rem;
     }
+
+    &__details {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+
+        & li {
+            margin-bottom: 1rem;
+
+            strong {
+                display: inline-block;
+                margin-bottom: .3rem;
+            }
+        }
+    }
 }

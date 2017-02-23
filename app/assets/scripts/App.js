@@ -6,7 +6,7 @@ import ZoomHover from "./modules/ZoomHover";
 import Lightbox from "./modules/Lightbox";
 
 const navigation = new Navigation();
-new RevealOnScroll($( ".abilities__list li, .profile--reveal, .experience--reveal, .projects .row" ), "100%");
+new RevealOnScroll($( ".abilities__list, .profile--reveal, .experience--reveal, .projects .row" ), "100%");
 const toolTip = new Tooltip();
 const zoomHover = new ZoomHover();
 const lightbox = new Lightbox();

@@ -1015,6 +1015,29 @@ li.lightbox__overlay__container__nav--active {
   background-position: -41px 0px;
 }
 
+.btn {
+    padding: .7rem;
+    display: inline-block;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.btn--primary {
+  background-color: #97c5c1;
+  color: #f6f6f4;
+}
+
+.btn--primary:hover {
+  background-color: #8c8c8c;
+  color: #f6f6f4;
+  text-shadow: none;
+}
+
+.btn--centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .tooltip {
     cursor: help;
 }
@@ -1221,6 +1244,21 @@ li.lightbox__overlay__container__nav--active {
   padding-top: 6.18rem;
 }
 
+.profile__details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__details li {
+  margin-bottom: 1rem;
+}
+
+.profile__details li strong {
+  display: inline-block;
+  margin-bottom: .3rem;
+}
+
 .experience {
     z-index: 3;
     position: relative;
@@ -1307,13 +1345,13 @@ li.lightbox__overlay__container__nav--active {
 .contact {
     z-index: 3;
     position: relative;
+
 }
 
 .contact__content {
   font-size: 1.5rem;
 }
 
-.contact__spacer {
-  height: 5rem;
-  width: 100%;
+.contact__btn {
+  text-align: center;
 }
