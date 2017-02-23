@@ -1,4 +1,13 @@
 .contact {
     z-index: 3;
     position: relative;
+
+    &__content {
+        font-size: 1.5rem;
+    }
+
+    &__spacer {
+        height: 5rem;
+        width: 100%;
+    }
 }

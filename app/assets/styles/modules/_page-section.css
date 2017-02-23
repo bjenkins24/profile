@@ -45,12 +45,16 @@
     }
 
     &__separator {
-       margin: 2rem 0; 
-       background-color: $white-dark;
+        margin: 2rem 0; 
+        background-color: $white-dark;
 
-       &--white {
+        &--white {
             background-color: $white;
-       }
+        }
+
+        &--b-margin-huge {
+            margin-bottom: 15rem;
+        }
     }
 
     

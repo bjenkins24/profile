@@ -5,7 +5,6 @@ body {
     &.no-scroll {
         overflow: hidden;
     }
-
 }
 
 img {

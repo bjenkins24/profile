@@ -11103,9 +11103,49 @@ var Lightbox = function () {
         value: function events() {
             this.clickedElement.click(this.open.bind(this));
             this.overlay.click(this.close.bind(this));
+            (0, _jquery2.default)(window).resize(this.resizeDescription.bind(this));
 
             // Don't allow the lightbox to close on a click inside the container element
             this.container.click(this.stopPropagation);
+        }
+
+        // Make sure the description is the correct 
+        // Not too excited about this function - I feel like there's a better way to do this with
+        // just css, but going to leave it here for now in favor of time.
+
+    }, {
+        key: "resizeDescription",
+        value: function resizeDescription() {
+            var openContainer = (0, _jquery2.default)("." + this.overlayClass + "__container--open");
+            var image = openContainer.find("." + this.overlayClass + "__container__image");
+            var nav = (0, _jquery2.default)("." + this.overlayClass + "__container__nav");
+
+            var navHeight = nav.height();
+            var windowHeight = (0, _jquery2.default)(window).height();
+            var imageHeight = image.height();
+            var descriptionTopBottomMargin = 25;
+
+            var containerHeight = windowHeight - navHeight - descriptionTopBottomMargin;
+            var descriptionHeight = containerHeight - imageHeight - descriptionTopBottomMargin;
+
+            // Don't allow description to be bigger than 200px
+            if (descriptionHeight > 190) {
+                var difference = descriptionHeight - 190;
+                descriptionHeight = 190;
+                containerHeight = containerHeight - difference;
+            }
+
+            var navBottomMargin = (windowHeight - containerHeight) / 2 - descriptionHeight / 5;
+
+            if (navBottomMargin <= 5) {
+                navBottomMargin = 5;
+            }
+
+            nav.css("bottom", navBottomMargin);
+            openContainer.css("height", containerHeight + "px");
+            // Move the container up to make room for the lower navigation
+            openContainer.css("margin-top", "-" + navHeight / 2.5 + "px");
+            openContainer.find("." + this.overlayClass + "__container__description").css("height", descriptionHeight + "px");
         }
     }, {
         key: "stopPropagation",
@@ -11254,6 +11294,8 @@ var Lightbox = function () {
             this.closeAllImages();
 
             (0, _jquery2.default)("." + this.overlayClass + "__container[data-lightbox-number='" + number + "']").addClass(this.overlayClass + "__container--open");
+
+            this.resizeDescription();
 
             this.switchNav(number);
         }
