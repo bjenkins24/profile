@@ -26,7 +26,7 @@
                 color: $gray;
                 position: absolute;
                 width: 87%;
-                bottom: 13px;
+                top: 13px;
                 left: 50%;
                 transform: translateX(-50%); 
                 margin: 0;
@@ -67,9 +67,10 @@
             &__description {
                 background: $white;
                 padding: 1.5rem;
-                margin-top: .5rem;
-                margin-bottom: .5rem;
+                margin-top: .1rem;
                 border-radius: 6px;
+                max-height: 250px;
+                font-size: .9rem;
 
                 & p:first-child {
                     margin-top: 0;

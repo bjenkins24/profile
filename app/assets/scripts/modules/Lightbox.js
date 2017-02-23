@@ -48,23 +48,9 @@ class Lightbox {
         let containerHeight = windowHeight-navHeight-descriptionTopBottomMargin;
         let descriptionHeight = containerHeight-imageHeight-descriptionTopBottomMargin;
 
-        // Don't allow description to be bigger than 200px
-        if ( descriptionHeight > 190 ) {
-            let difference = descriptionHeight-190;
-            descriptionHeight = 190;
-            containerHeight = containerHeight-difference;
-        }
-
-        let navBottomMargin = (windowHeight-containerHeight)/2-(descriptionHeight/5);
-
-        if( navBottomMargin <= 5 ) {
-            navBottomMargin = 5;
-        }
-
-        nav.css( "bottom", navBottomMargin);
         openContainer.css( "height", `${containerHeight}px` );
-        // Move the container up to make room for the lower navigation
-        openContainer.css( "margin-top", `-${navHeight/2.5}px` );
+        // Move the container up to make room for the upper navigation
+        openContainer.css( "margin-top", `${navHeight/1.5}px` );
         openContainer.find( "." + this.overlayClass + "__container__description" ).css( "height", `${descriptionHeight}px` );
     }
 
