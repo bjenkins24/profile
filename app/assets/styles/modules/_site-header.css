@@ -3,7 +3,7 @@
     background: $white;
     color: $white;
     height: 3.5rem;
-    transition: background .3s ease-out;
+    transition: background 0.3s ease-out;
     margin-top: 100vh;
 
     /* Placeholder for when the navigation becomes fixed - added with js */
@@ -31,11 +31,11 @@
     }
 
     &--gray {
-        background-color: rgba($gray, .8);
+        background-color: rgba($gray, 0.8);
     }
 
     &__menu-content {
-        padding: 3.5rem 0 0 0;
+        padding: 3.5rem 0 0;
         list-style: none;
         margin: 0;
         display: none;
@@ -64,15 +64,16 @@
                 padding: 1.2rem;
                 display: block;
 
+                &.is-current-link {
+                    color: $primary-color;
+                }
+
                 &:hover {
                     background: $white;
                     color: $primary-color;
                 }
             }
-
-
         }
-
     }
 
     &__menu-icon {
@@ -92,8 +93,8 @@
             left: 0;
             width: 25px;
             height: 3px;
-            background: $white;;
-            transition: transform .3s ease-out;
+            background: $white;
+            transition: transform 0.3s ease-out;
         }
 
         &__middle {
@@ -102,8 +103,8 @@
             left: 0;
             width: 25px;
             height: 3px;
-            background: $white;;
-            transition: all .3s ease-out;
+            background: $white;
+            transition: all 0.3s ease-out;
             transform-origin: 0 50%;
         }
 
@@ -115,8 +116,8 @@
             left: 0;
             width: 25px;
             height: 3px;
-            background: $white;;
-            transition: transform .3s ease-out;
+            background: $white;
+            transition: transform 0.3s ease-out;
         }
 
         @mixin atMedium {
@@ -126,7 +127,7 @@
 
     &__menu-icon--close-x {
         &::before {
-            transform: rotate(45deg) scaleX(1.25)
+            transform: rotate(45deg) scaleX(1.25);
         }
 
         .site-header__menu-icon__middle {
@@ -135,7 +136,7 @@
         }
 
         &::after {
-            transform: rotate(-45deg) scaleX(1.25) translateY(1px)
+            transform: rotate(-45deg) scaleX(1.25) translateY(1px);
         }
     }
 }

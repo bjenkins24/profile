@@ -5,9 +5,9 @@
     &__item {
         font-weight: 400;
         font-size: 1.3rem;
-        letter-spacing: .1rem;
+        letter-spacing: 0.1rem;
         display: block;
-        margin-bottom: .6rem;
+        margin-bottom: 0.6rem;
 
         a {
             color: $white;
@@ -44,16 +44,11 @@
         &--no-margin {
             margin: 0;
         }
-
     }
 
     &__separator {
-
         @mixin atMedium {
             display: none;
         }
-        
     }
-
-
 }

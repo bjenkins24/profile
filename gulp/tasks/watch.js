@@ -13,6 +13,7 @@ gulp.task('watch', function() {
     });
 
     watch('./app/assets/scripts/**/*.js', function() {
+        gulp.start('docs');
         gulp.start('scriptsRefresh');
     });
 

@@ -1,19 +1,18 @@
 .lightbox {
-
     &__overlay {
-        transition: all .4s ease-out;
+        transition: all 0.4s ease-out;
         visibility: hidden;
         opacity: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         position: fixed;
         top: 0;
         left: 0;
         z-index: 10;
 
         &__container {
-            transition: opacity .4s ease-out;
+            transition: opacity 0.4s ease-out;
             opacity: 0;
             visibility: hidden;
             position: absolute;
@@ -21,7 +20,7 @@
             width: 80%;
 
             @mixin atXSmall {
-                width: 82%
+                width: 82%;
             }
 
             @mixin atSmall {
@@ -40,11 +39,11 @@
                 width: 87%;
                 top: 13px;
                 left: 50%;
-                transform: translateX(-50%); 
+                transform: translateX(-50%);
                 margin: 0;
                 padding-left: 0;
                 overflow: hidden;
-                font-size: .9rem;
+                font-size: 0.9rem;
                 border-radius: 6px;
                 display: none;
 
@@ -52,7 +51,7 @@
                     display: block;
                     width: 87%;
                 }
-                
+
                 li {
                     float: left;
                     padding: 1%;
@@ -78,17 +77,17 @@
                     width: 100%;
                     border-radius: 6px;
                     border: 2px solid $white;
-                    box-shadow: 0px 0px 3px 0px rgba(0,0,0,.2);
+                    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
                 }
             }
 
             &__description {
                 background: $white;
                 padding: 1.5rem;
-                margin-top: .1rem;
+                margin-top: 0.1rem;
                 border-radius: 6px;
                 max-height: 250px;
-                font-size: .9rem;
+                font-size: 0.9rem;
 
                 & p:first-child {
                     margin-top: 0;
@@ -108,7 +107,6 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
-
         }
 
         &--open {
@@ -117,7 +115,8 @@
             z-index: 11;
         }
 
-        &__left-arrow, &__right-arrow {
+        &__left-arrow,
+        &__right-arrow {
             position: absolute;
             top: 50%;
             font-size: 4rem;
@@ -125,7 +124,7 @@
             background-color: $white;
             cursor: pointer;
             transform: translateY(-50%);
-            text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 
             &:hover {
                 background-color: $primary-color;
@@ -137,40 +136,36 @@
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
             left: 0;
-            padding: 0 1rem .4rem .4rem;
+            padding: 0 1rem 0.4rem 0.4rem;
 
             & i {
-                padding-left: .1rem;
+                padding-left: 0.1rem;
             }
-
         }
 
         &__right-arrow {
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
             right: 0;
-            padding: 0 .4rem .4rem 1rem;
+            padding: 0 0.4rem 0.4rem 1rem;
 
             & i {
-                padding-right: .1rem;
+                padding-right: 0.1rem;
             }
-
         }
-        
+
         &__close {
             position: absolute;
             right: 1rem;
             font-size: 3rem;
             color: white;
-            text-shadow: 1px 1px 1px rgba(0,0,0,.2);
-            top: .5rem;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            top: 0.5rem;
             cursor: pointer;
 
             &:hover {
                 color: $primary-color;
             }
-        } 
-
+        }
     }
-
 }

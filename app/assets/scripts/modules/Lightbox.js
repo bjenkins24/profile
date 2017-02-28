@@ -12,10 +12,11 @@ class Lightbox {
         this.clickedElement = $('.lightbox');
 
         this.overlayClass = 'lightbox__overlay';
+        this.overlay = $(`.${this.overlayClass}`);
         this.leftArrowClass = `${this.overlayClass}__left-arrow`;
         this.rightArrowClass = `${this.overlayClass}__right-arrow`;
-        this.overlay = $(`.${this.overlayClass}`);
-        this.container = $(`.${this.overlayClass}__container`);
+        this.containerClass = `${this.overlayClass}__container`;
+        this.container = $(`.${this.containerClass}`);
 
         // Html variables
         this.closeButtonHtml =
@@ -60,10 +61,10 @@ class Lightbox {
      * time.
      */
     resizeDescription() {
-        let openContainer = $(`.${this.overlayClass}__container--open`);
+        let openContainer = $(`.${this.containerClass}--open`);
         let image = openContainer
-            .find(`.${this.overlayClass}__container__image`);
-        let nav = $(`.${this.overlayClass}__container__nav`);
+            .find(`.${this.containerClass}__image`);
+        let nav = $(`.${this.containerClass}__nav`);
 
         let navHeight = nav.height();
         let windowHeight = $(window).height();
@@ -79,7 +80,7 @@ class Lightbox {
         openContainer.css('height', `${containerHeight}px`);
         // Move the container up to make room for the upper navigation
         openContainer.css('margin-top', `${navHeight/1.5}px`);
-        openContainer.find(`.${this.overlayClass}__container__description`)
+        openContainer.find(`.${this.containerClass}__description`)
             .css('height', `${descriptionHeight}px`);
     }
 
@@ -111,11 +112,11 @@ class Lightbox {
      * Add or remove the top nav depending on if it exists or not
      */
     addRemoveNav() {
-        let nav = $(`.${this.overlayClass}__container__nav`);
+        let nav = $(`.${this.containerClass}__nav`);
         if (nav.length === 0) {
             $(`.${this.overlayClass}--open`).append(this.navHtml);
 
-            nav = $(`.${this.overlayClass}__container__nav`);
+            nav = $(`.${this.containerClass}__nav`);
 
             $(`.${this.overlayClass}--open .${this.overlayClass}__container`)
                 .each(function(index, value) {
@@ -209,9 +210,9 @@ class Lightbox {
      * before any images are opened
      */
     closeAllImages() {
-        this.container.removeClass(`${this.overlayClass}__container--open`);
-        $(`ul.${this.overlayClass}__container__nav li`)
-            .removeClass(`${this.overlayClass}__container__nav--active`);
+        this.container.removeClass(`${this.containerClass}--open`);
+        $(`ul.${this.containerClass}__nav li`)
+            .removeClass(`${this.containerClass}__nav--active`);
     }
 
     /**
@@ -219,10 +220,10 @@ class Lightbox {
      * @param {Object} e - event
      */
     leftImage(e) {
-        let currentImage = $(`.${this.overlayClass}__container--open`)
+        let currentImage = $(`.${this.containerClass}--open`)
             .data('lightbox-number');
         let totalImages =
-            $(`.${this.overlayClass}--open .${this.overlayClass}__container`)
+            $(`.${this.overlayClass}--open .${this.containerClass}`)
             .length;
 
         let nextImage;
@@ -241,10 +242,10 @@ class Lightbox {
      * @param {Object} e - event
      */
     rightImage(e) {
-        let currentImage = $(`.${this.overlayClass}__container--open`)
+        let currentImage = $(`.${this.containerClass}--open`)
             .data('lightbox-number');
         let totalImages =
-            $(`.${this.overlayClass}--open .${this.overlayClass}__container`)
+            $(`.${this.overlayClass}--open .${this.containerClass}`)
             .length;
 
         let nextImage;
@@ -266,10 +267,9 @@ class Lightbox {
         this.closeAllImages();
 
         let nextImage =
-            $(`.${this.overlayClass}__container
-              [data-lightbox-number="${number}"]`);
+            $(`.${this.containerClass}[data-lightbox-number="${number}"]`);
 
-        nextImage.addClass(`${this.overlayClass}__container--open`);
+        nextImage.addClass(`${this.containerClass}--open`);
 
         this.resizeDescription();
 
@@ -281,9 +281,8 @@ class Lightbox {
      * @param {Number} number - the number of the navigation being selected
      */
     switchNav(number) {
-        $(`${this.overlayClass}__container__nav
-          li[data-lightbox-number="${number}"]`)
-            .addClass(`${this.overlayClass}__container__nav--active`);
+        $(`.${this.containerClass}__nav li[data-lightbox-number="${number}"]`)
+            .addClass(`${this.containerClass}__nav--active`);
     }
 
     /**

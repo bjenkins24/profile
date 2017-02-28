@@ -11091,10 +11091,11 @@ var Lightbox = function () {
         this.clickedElement = (0, _jquery2.default)('.lightbox');
 
         this.overlayClass = 'lightbox__overlay';
+        this.overlay = (0, _jquery2.default)('.' + this.overlayClass);
         this.leftArrowClass = this.overlayClass + '__left-arrow';
         this.rightArrowClass = this.overlayClass + '__right-arrow';
-        this.overlay = (0, _jquery2.default)('.' + this.overlayClass);
-        this.container = (0, _jquery2.default)('.' + this.overlayClass + '__container');
+        this.containerClass = this.overlayClass + '__container';
+        this.container = (0, _jquery2.default)('.' + this.containerClass);
 
         // Html variables
         this.closeButtonHtml = '<i class="fa fa-times ' + this.overlayClass + '__close"></i>';
@@ -11136,9 +11137,9 @@ var Lightbox = function () {
     }, {
         key: 'resizeDescription',
         value: function resizeDescription() {
-            var openContainer = (0, _jquery2.default)('.' + this.overlayClass + '__container--open');
-            var image = openContainer.find('.' + this.overlayClass + '__container__image');
-            var nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
+            var openContainer = (0, _jquery2.default)('.' + this.containerClass + '--open');
+            var image = openContainer.find('.' + this.containerClass + '__image');
+            var nav = (0, _jquery2.default)('.' + this.containerClass + '__nav');
 
             var navHeight = nav.height();
             var windowHeight = (0, _jquery2.default)(window).height();
@@ -11151,7 +11152,7 @@ var Lightbox = function () {
             openContainer.css('height', containerHeight + 'px');
             // Move the container up to make room for the upper navigation
             openContainer.css('margin-top', navHeight / 1.5 + 'px');
-            openContainer.find('.' + this.overlayClass + '__container__description').css('height', descriptionHeight + 'px');
+            openContainer.find('.' + this.containerClass + '__description').css('height', descriptionHeight + 'px');
         }
 
         /**
@@ -11191,11 +11192,11 @@ var Lightbox = function () {
     }, {
         key: 'addRemoveNav',
         value: function addRemoveNav() {
-            var nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
+            var nav = (0, _jquery2.default)('.' + this.containerClass + '__nav');
             if (nav.length === 0) {
                 (0, _jquery2.default)('.' + this.overlayClass + '--open').append(this.navHtml);
 
-                nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
+                nav = (0, _jquery2.default)('.' + this.containerClass + '__nav');
 
                 (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').each(function (index, value) {
                     var name = (0, _jquery2.default)(value).data('lightbox-name');
@@ -11300,8 +11301,8 @@ var Lightbox = function () {
     }, {
         key: 'closeAllImages',
         value: function closeAllImages() {
-            this.container.removeClass(this.overlayClass + '__container--open');
-            (0, _jquery2.default)('ul.' + this.overlayClass + '__container__nav li').removeClass(this.overlayClass + '__container__nav--active');
+            this.container.removeClass(this.containerClass + '--open');
+            (0, _jquery2.default)('ul.' + this.containerClass + '__nav li').removeClass(this.containerClass + '__nav--active');
         }
 
         /**
@@ -11312,8 +11313,8 @@ var Lightbox = function () {
     }, {
         key: 'leftImage',
         value: function leftImage(e) {
-            var currentImage = (0, _jquery2.default)('.' + this.overlayClass + '__container--open').data('lightbox-number');
-            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').length;
+            var currentImage = (0, _jquery2.default)('.' + this.containerClass + '--open').data('lightbox-number');
+            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.containerClass).length;
 
             var nextImage = void 0;
             if (currentImage === 1) {
@@ -11334,8 +11335,8 @@ var Lightbox = function () {
     }, {
         key: 'rightImage',
         value: function rightImage(e) {
-            var currentImage = (0, _jquery2.default)('.' + this.overlayClass + '__container--open').data('lightbox-number');
-            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').length;
+            var currentImage = (0, _jquery2.default)('.' + this.containerClass + '--open').data('lightbox-number');
+            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.containerClass).length;
 
             var nextImage = void 0;
             if (currentImage === totalImages) {
@@ -11358,9 +11359,9 @@ var Lightbox = function () {
         value: function switchImage(number) {
             this.closeAllImages();
 
-            var nextImage = (0, _jquery2.default)('.' + this.overlayClass + '__container\n              [data-lightbox-number="' + number + '"]');
+            var nextImage = (0, _jquery2.default)('.' + this.containerClass + '[data-lightbox-number="' + number + '"]');
 
-            nextImage.addClass(this.overlayClass + '__container--open');
+            nextImage.addClass(this.containerClass + '--open');
 
             this.resizeDescription();
 
@@ -11375,7 +11376,7 @@ var Lightbox = function () {
     }, {
         key: 'switchNav',
         value: function switchNav(number) {
-            (0, _jquery2.default)(this.overlayClass + '__container__nav\n          li[data-lightbox-number="' + number + '"]').addClass(this.overlayClass + '__container__nav--active');
+            (0, _jquery2.default)('.' + this.containerClass + '__nav li[data-lightbox-number="' + number + '"]').addClass(this.containerClass + '__nav--active');
         }
 
         /**
@@ -11417,17 +11418,11 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _noframework = __webpack_require__(1);
+__webpack_require__(1);
 
-var _noframework2 = _interopRequireDefault(_noframework);
+__webpack_require__(9);
 
-var _inview = __webpack_require__(9);
-
-var _inview2 = _interopRequireDefault(_inview);
-
-var _jquerySmoothScroll = __webpack_require__(8);
-
-var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
+__webpack_require__(8);
 
 var _MobileMenu = __webpack_require__(7);
 
@@ -11437,23 +11432,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * Navigation javascript including menu icon, sticky, and active sections
+ */
 var Navigation = function () {
+
+    /**
+     * Constructor for Navigation
+     */
     function Navigation() {
         _classCallCheck(this, Navigation);
 
-        this.siteHeader = (0, _jquery2.default)(".site-header");
-        this.profileSection = (0, _jquery2.default)(".profile");
-        this.pageSections = (0, _jquery2.default)(".page-section");
-        this.headerLinks = (0, _jquery2.default)(".site-header__menu-content a");
-        this.downArrow = (0, _jquery2.default)(".large-hero__arrow-box");
+        this.siteHeader = (0, _jquery2.default)('.site-header');
+        this.profileSection = (0, _jquery2.default)('.profile');
+        this.pageSections = (0, _jquery2.default)('.page-section');
+        this.headerLinks = (0, _jquery2.default)('.site-header__menu-content a');
+        this.downArrow = (0, _jquery2.default)('.large-hero__arrow-box');
 
-        this.siteHeader.after(" <div class='site-header__placeholder'></div>");
-        this.navPlaceholder = (0, _jquery2.default)(".site-header__placeholder");
+        this.siteHeader.after('<div class="site-header__placeholder"></div>');
+        this.navPlaceholder = (0, _jquery2.default)('.site-header__placeholder');
         this.init();
     }
 
+    /**
+     * Initialize navigation called in the constructor
+     */
+
+
     _createClass(Navigation, [{
-        key: "init",
+        key: 'init',
         value: function init() {
             this.mobileMenu = new _MobileMenu2.default();
             this.events();
@@ -11465,36 +11472,64 @@ var Navigation = function () {
             this.headerStickyWaypoint();
 
             this.addHeaderColorWaypoint();
-            this.removeHeaderColor();
+            this.removeHeaderColorWaypoint();
 
             this.createPageSectionWaypoints();
         }
+
+        /**
+         * Dom events
+         */
+
     }, {
-        key: "events",
+        key: 'events',
         value: function events() {
             this.downArrow.click(this.scrollToProfile.bind(this));
             this.headerLinks.click(this.mobileMenu.closeMenu.bind(this.mobileMenu));
         }
+
+        /**
+         * Scroll to the profile section - for use with the down arrow
+         */
+
     }, {
-        key: "scrollToProfile",
+        key: 'scrollToProfile',
         value: function scrollToProfile() {
-            (0, _jquery2.default)("html, body").animate({
+            (0, _jquery2.default)('html, body').animate({
                 scrollTop: this.profileSection.offset().top
             }, 900);
         }
+
+        /**
+         * Add smooth scrolling to the hashes in the navigation
+         * The -56 offset is to give padding for the sticky navigation
+         */
+
     }, {
-        key: "addSmoothScrolling",
+        key: 'addSmoothScrolling',
         value: function addSmoothScrolling() {
-            this.headerLinks.smoothScroll({ offset: -56 });
+            var headerHeight = -56;
+            this.headerLinks.smoothScroll({ offset: headerHeight });
         }
+
+        /**
+         * Add the classes to make the header sticky - including making the
+         * placeholder visible
+         */
+
     }, {
-        key: "makeHeaderSticky",
+        key: 'makeHeaderSticky',
         value: function makeHeaderSticky() {
-            this.siteHeader.addClass("site-header--fixed");
-            this.navPlaceholder.addClass("site-header__placeholder--is-visible");
+            this.siteHeader.addClass('site-header--fixed');
+            this.navPlaceholder.addClass('site-header__placeholder--is-visible');
         }
+
+        /**
+         * Make the header sticky on load if it should be sticky
+         */
+
     }, {
-        key: "headerStickyOnLoad",
+        key: 'headerStickyOnLoad',
         value: function headerStickyOnLoad() {
             var scrollPosition = (0, _jquery2.default)(window).scrollTop();
             var downArrowPosition = this.downArrow.offset().top;
@@ -11503,66 +11538,102 @@ var Navigation = function () {
                 this.makeHeaderSticky();
             }
         }
+
+        /**
+         * Make a waypoint to make the header sticky - this uses the inview shortcut
+         * of waypoints make the header sticky when the arrow is exited and stop it
+         * from being sticky when the arrow is entered on the way back up
+         */
+
     }, {
-        key: "headerStickyWaypoint",
+        key: 'headerStickyWaypoint',
         value: function headerStickyWaypoint() {
             var that = this;
             new Waypoint.Inview({
                 element: that.downArrow[0],
                 exited: function exited(direction) {
-                    if (direction == "down") {
+                    if (direction === 'down') {
                         that.makeHeaderSticky();
                     }
                 },
                 enter: function enter(direction) {
-                    if (direction == "up") {
+                    if (direction === 'up') {
                         that.removeSticky();
                     }
                 }
             });
         }
+
+        /**
+         * Remove the sticky header when needed. Also closed the mobile menu if open
+         */
+
     }, {
-        key: "removeSticky",
+        key: 'removeSticky',
         value: function removeSticky() {
             this.mobileMenu.closeMenu();
-            this.siteHeader.removeClass("site-header--fixed");
-            this.navPlaceholder.removeClass("site-header__placeholder--is-visible");
+            this.siteHeader.removeClass('site-header--fixed');
+            this.navPlaceholder.removeClass('site-header__placeholder--is-visible');
         }
+
+        /**
+         * Add the color class to the header
+         */
+
     }, {
-        key: "addHeaderColor",
+        key: 'addHeaderColor',
         value: function addHeaderColor() {
-            this.siteHeader.addClass("site-header--gray");
+            this.siteHeader.addClass('site-header--gray');
         }
+
+        /**
+         * Add the waypoint for when to add the color. This will happen BEFORE the
+         * arrow is reached
+         */
+
     }, {
-        key: "addHeaderColorWaypoint",
+        key: 'addHeaderColorWaypoint',
         value: function addHeaderColorWaypoint() {
             var that = this;
             new Waypoint({
                 element: that.downArrow[0],
                 handler: function handler(direction) {
-                    if (direction == "down") {
+                    if (direction === 'down') {
                         that.addHeaderColor();
                     }
                 },
-                offset: "13%"
+                offset: '13%'
             });
         }
+
+        /**
+         * add waypoint for removing the header color. This will happen BEFORE the
+         * arrow is reached
+         * @param {type} name - comment
+         */
+
     }, {
-        key: "removeHeaderColor",
-        value: function removeHeaderColor() {
+        key: 'removeHeaderColorWaypoint',
+        value: function removeHeaderColorWaypoint() {
             var that = this;
             new Waypoint({
                 element: that.downArrow[0],
                 handler: function handler(direction) {
-                    if (direction == "up") {
-                        that.siteHeader.removeClass("site-header--gray");
+                    if (direction === 'up') {
+                        that.siteHeader.removeClass('site-header--gray');
                     }
                 },
-                offset: "13%"
+                offset: '13%'
             });
         }
+
+        /**
+         * Create waypoints for page sections to change the active
+         * section in the nav
+         */
+
     }, {
-        key: "createPageSectionWaypoints",
+        key: 'createPageSectionWaypoints',
         value: function createPageSectionWaypoints() {
             var that = this;
             this.pageSections.each(function () {
@@ -11570,25 +11641,25 @@ var Navigation = function () {
                 new Waypoint({
                     element: currentPageSection,
                     handler: function handler(direction) {
-                        if (direction == "down") {
-                            var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
-                            that.headerLinks.removeClass("is-current-link");
-                            (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
+                        if (direction === 'down') {
+                            var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
+                            that.headerLinks.removeClass('is-current-link');
+                            (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
                         }
                     },
-                    offset: "18%"
+                    offset: '18%'
                 });
 
                 new Waypoint({
                     element: currentPageSection,
                     handler: function handler(direction) {
-                        if (direction == "up") {
-                            var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
-                            that.headerLinks.removeClass("is-current-link");
-                            (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
+                        if (direction === 'up') {
+                            var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
+                            that.headerLinks.removeClass('is-current-link');
+                            (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
                         }
                     },
-                    offset: "-40%"
+                    offset: '-40%'
                 });
             });
         }
@@ -11616,28 +11687,47 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _noframework = __webpack_require__(1);
-
-var _noframework2 = _interopRequireDefault(_noframework);
+__webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * Reveal certain elements on scroll for zoom fade effect
+ */
 var RevealOnScroll = function () {
-    function RevealOnScroll(els, offset) {
+
+    /**
+     * Constructor for RevealOnScroll
+     * @param {Object} elements - All elements that will be revealed
+     * @param {String} offset - the offset of when the items will be revealed
+     */
+    function RevealOnScroll(elements, offset) {
         _classCallCheck(this, RevealOnScroll);
 
-        this.itemsToReveal = els;
+        this.itemsToReveal = elements;
         this.hideInitially();
         this.createWaypoints(offset);
     }
+
+    /**
+     * The items should be hid initially
+     */
+
 
     _createClass(RevealOnScroll, [{
         key: 'hideInitially',
         value: function hideInitially() {
             this.itemsToReveal.addClass('reveal-item');
         }
+
+        /**
+         * Actually create the waypoints with supplied offset
+         * @param {String} offset - How far away the user will be before the item
+         * is revealed
+         */
+
     }, {
         key: 'createWaypoints',
         value: function createWaypoints(offset) {
@@ -11654,10 +11744,21 @@ var RevealOnScroll = function () {
                 });
             });
         }
+
+        /**
+         * Don't want the item to continue have the reveal-item class after it's
+         * visible, because it will effect the CSS transition type. After the CSS
+         * transition remove the reveal item classes
+         * @param {String} currentItem - the selector for the current item being
+         * removed
+         */
+
     }, {
         key: 'removeRevealItem',
         value: function removeRevealItem(currentItem) {
-            (0, _jquery2.default)(currentItem).one("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd", function () {
+            var transitionEvents = 'transitionend\n            webkitTransitionEnd\n            oTransitionEnd\n            otransitionend\n            MSTransitionEnd';
+
+            (0, _jquery2.default)(currentItem).one(transitionEvents, function () {
                 (0, _jquery2.default)(currentItem).removeClass('reveal-item reveal-item--is-visible');
             });
         }
@@ -11689,51 +11790,90 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * Create tooltips on hover and tap on mobile
+ */
 var Tooltip = function () {
+
+    /**
+     * Tooltip constructor
+     */
     function Tooltip() {
         _classCallCheck(this, Tooltip);
 
+        this.tooltip = (0, _jquery2.default)('.tooltip');
         this.events();
     }
 
+    /**
+     * DOM events
+     */
+
+
     _createClass(Tooltip, [{
-        key: "events",
+        key: 'events',
         value: function events() {
-            (0, _jquery2.default)(".tooltip").mouseenter(this.createTooltip.bind(this));
-            (0, _jquery2.default)(".tooltip").mouseleave(this.removeTooltip);
+            this.tooltip.mouseenter(this.createTooltip.bind(this));
+            this.tooltip.mouseleave(this.removeTooltip);
         }
+
+        /**
+         * Create random so we can remove the correct tooltip later
+         * @return {String} - random id
+         */
+
     }, {
-        key: "createId",
+        key: 'createId',
         value: function createId() {
             return Math.random().toString(36).substring(7);
         }
+
+        /**
+         * Actually create the tooltip
+         * @param {Object} e - event
+         * @return {Boolean} If there is no tip then it won't create one
+         */
+
     }, {
-        key: "createTooltip",
+        key: 'createTooltip',
         value: function createTooltip(e) {
             var tooltipId = this.createId();
-            var tooltip = (0, _jquery2.default)("<div class='tooltip__content' data-matching-tooltip='" + tooltipId + "'></div>");
-            var target = (0, _jquery2.default)(e.currentTarget);
-            var tip = target.attr("title");
+            var tooltip = (0, _jquery2.default)('\n              <div class="tooltip__content"\n              data-matching-tooltip="' + tooltipId + '"></div>\n            ');
 
-            if (!tip || tip == "") {
+            var target = (0, _jquery2.default)(e.currentTarget);
+            var tip = target.attr('title');
+
+            if (!tip || tip === '') {
                 return false;
             }
 
-            target.removeAttr("title");
-            target.attr("data-matching-tooltip", tooltipId);
+            target.removeAttr('title');
+            target.attr('data-matching-tooltip', tooltipId);
 
-            tooltip.css("opacity", 1).html(tip).appendTo("body");
+            tooltip.css('opacity', 1).html(tip).appendTo('body');
             tooltip.click(this.removeTooltip);
 
             this.initTooltip(tooltip, target);
         }
+
+        /**
+         * Init the tooltip in the correct place
+         * @param {Object} tooltip - the actual tooltip tooltip__content
+         * @param {Object} target - the target is the element that fired the tooltip
+         */
+
     }, {
-        key: "initTooltip",
+        key: 'initTooltip',
         value: function initTooltip(tooltip, target) {
             if ((0, _jquery2.default)(window).width() < tooltip.outerWidth() * 1.5) {
-                tooltip.css("max-width", (0, _jquery2.default)(window).width() / 1.5);
+                // On small screens make the tooltip bigger
+                if ((0, _jquery2.default)(window).width() < 800) {
+                    tooltip.css('max-width', (0, _jquery2.default)(window).width() / 1.4);
+                } else {
+                    tooltip.css('max-width', (0, _jquery2.default)(window).width() / 3);
+                }
             } else {
-                tooltip.css("max-width", 500);
+                tooltip.css('max-width', 340);
             }
 
             var posLeft = target.offset().left + target.outerWidth() / 2 - tooltip.outerWidth() / 2;
@@ -11742,43 +11882,51 @@ var Tooltip = function () {
 
             if (posLeft < 0) {
                 posLeft = target.offset().left + target.outerWidth() / 2 - 20;
-                tooltip.addClass("left");
+                tooltip.addClass('left');
             } else {
-                tooltip.removeClass("left");
+                tooltip.removeClass('left');
             }
 
             if (posLeft + tooltip.outerWidth() > (0, _jquery2.default)(window).width()) {
                 posLeft = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
 
-                tooltip.addClass("right");
+                tooltip.addClass('right');
             } else {
-                tooltip.removeClass("right");
+                tooltip.removeClass('right');
             }
 
             if (posTop < 0) {
                 posTop = target.offset().top + target.outerHeight();
-                tooltip.addClass("top");
+                tooltip.addClass('top');
             } else {
-                tooltip.removeClass("top");
+                tooltip.removeClass('top');
             }
 
-            tooltip.css({ left: posLeft, top: posTop }).animate({ top: "+=10", opacity: 1 }, 50);
+            tooltip.css({ left: posLeft, top: posTop }).animate({ top: '+=10', opacity: 1 }, 50);
         }
+
+        /**
+         * Remove the actual tooltip
+         * @param {type} name - comment
+         */
+
     }, {
-        key: "removeTooltip",
+        key: 'removeTooltip',
         value: function removeTooltip() {
             var target = (0, _jquery2.default)(this);
 
-            var tooltipId = target.attr("data-matching-tooltip");
+            var tooltipId = target.attr('data-matching-tooltip');
 
-            var tooltip = (0, _jquery2.default)(".tooltip__content[data-matching-tooltip='" + tooltipId + "']");
+            var tooltip = (0, _jquery2.default)('.tooltip__content[data-matching-tooltip="' + tooltipId + '"]');
+            var tooltipEvent = (0, _jquery2.default)('.tooltip[data-matching-tooltip="' + tooltipId + '"]');
+
             var tip = tooltip.html();
 
-            tooltip.animate({ top: "-=10", opacity: 0 }, 350, function () {
-                (0, _jquery2.default)(this).remove();
+            tooltip.animate({ top: '-=10', opacity: 0 }, 350, function () {
+                tooltip.remove();
             });
 
-            target.attr("title", tip);
+            target.attr('title', tip);
         }
     }]);
 
@@ -11814,41 +11962,62 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * but I don't want the wrapper div to forever have overflow visible
  */
 var ZoomHover = function () {
+
+    /**
+     * Constructor for zoomhover
+     * @param {type} name - comment
+     */
     function ZoomHover() {
         _classCallCheck(this, ZoomHover);
 
-        this.zoomHover = (0, _jquery2.default)(".zoom-hover");
+        this.zoomHover = (0, _jquery2.default)('.zoom-hover');
         this.events();
     }
 
+    /**
+     * DOM events
+     */
+
+
     _createClass(ZoomHover, [{
-        key: "events",
+        key: 'events',
         value: function events() {
             this.zoomHover.mouseenter(this.overflowVisible);
             this.zoomHover.mouseleave(this.overflowHidden);
         }
+
+        /**
+         * Make the overflow visible
+         */
+
     }, {
-        key: "overflowVisible",
+        key: 'overflowVisible',
         value: function overflowVisible() {
-            (0, _jquery2.default)(this).closest(".wrapper").addClass("wrapper--overflow-hidden-until-medium");
+            (0, _jquery2.default)(this).closest('.wrapper').addClass('wrapper--overflow-hidden-until-medium');
         }
+
+        /**
+         * Hide the overflow
+         */
+
     }, {
-        key: "overflowHidden",
+        key: 'overflowHidden',
         value: function overflowHidden() {
-            var that = (0, _jquery2.default)(this);
+            var transitionEvents = 'transitionend\n            webkitTransitionEnd\n            oTransitionEnd\n            otransitionend\n            MSTransitionEnd';
 
-            // This is an event listener that only happens when a css transition is finished
-            (0, _jquery2.default)(".zoom-hover__overlay").one("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd", function () {
-
-                // If the element is currently hovered then we don't want to remove the visible 
-                // overflow
-                if ((0, _jquery2.default)(".zoom-hover__overlay:hover").length === 0) {
-                    (0, _jquery2.default)(".wrapper--overflow-visible").removeClass("wrapper--overflow-hidden-until-medium");
+            // This is an event listener that only happens when a css transition is
+            // finished
+            (0, _jquery2.default)('.zoom-hover__overlay').one(transitionEvents, function () {
+                // If the element is currently hovered then we don't want to remove
+                // the visible overflow
+                if ((0, _jquery2.default)('.zoom-hover__overlay:hover').length === 0) {
+                    (0, _jquery2.default)('.wrapper--overflow-visible').removeClass('wrapper--overflow-hidden-until-medium');
                 }
 
-                // Remove the CSS transition listener - because if you don't then the next time
-                // this fires it will remove the overflow on the initial transition
-                (0, _jquery2.default)(".zoom-hover__overlay").off("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd");
+                // Remove the CSS transition listener - because if you don't then
+                // the next time this fires it will remove the overflow on the
+                // initial transition
+                (0, _jquery2.default)('.zoom-hover__overlay').off(transitionEvents);
             });
         }
     }]);
@@ -11879,37 +12048,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * Toggle the mobile menu and close it used in {@link Navigation}
+ */
 var MobileMenu = function () {
+
+    /**
+     * Constructor for mobile menu
+     */
     function MobileMenu() {
         _classCallCheck(this, MobileMenu);
 
-        this.siteHeader = (0, _jquery2.default)(".site-header");
-        this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
-        this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
+        this.siteHeader = (0, _jquery2.default)('.site-header');
+        this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+        this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
         this.events();
     }
 
+    /**
+     * Events for MobileMenu
+     */
+
+
     _createClass(MobileMenu, [{
-        key: "events",
+        key: 'events',
         value: function events() {
             this.menuIcon.click(this.toggleTheMenu.bind(this));
         }
 
-        /** Used in Navigation.js */
+        /**
+         * Exclusively used in {@link Navigation.js}
+         */
 
     }, {
-        key: "closeMenu",
+        key: 'closeMenu',
         value: function closeMenu() {
-            this.menuContent.removeClass("site-header__menu-content--is-visible");
-            this.siteHeader.removeClass("site-header--is-expanded");
-            this.menuIcon.removeClass("site-header__menu-icon--close-x");
+            this.menuContent.removeClass('site-header__menu-content--is-visible');
+            this.siteHeader.removeClass('site-header--is-expanded');
+            this.menuIcon.removeClass('site-header__menu-icon--close-x');
         }
+
+        /**
+         * Toggle open and close the menu
+         */
+
     }, {
-        key: "toggleTheMenu",
+        key: 'toggleTheMenu',
         value: function toggleTheMenu() {
-            this.menuContent.toggleClass("site-header__menu-content--is-visible");
-            this.siteHeader.toggleClass("site-header--is-expanded");
-            this.menuIcon.toggleClass("site-header__menu-icon--close-x");
+            this.menuContent.toggleClass('site-header__menu-content--is-visible');
+            this.siteHeader.toggleClass('site-header--is-expanded');
+            this.menuIcon.toggleClass('site-header__menu-icon--close-x');
         }
     }]);
 
@@ -12424,11 +12612,11 @@ var _Lightbox2 = _interopRequireDefault(_Lightbox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var navigation = new _Navigation2.default();
-new _RevealOnScroll2.default((0, _jquery2.default)(".abilities__list, .profile--reveal, .experience--reveal, .projects .row"), "100%");
-var toolTip = new _Tooltip2.default();
-var zoomHover = new _ZoomHover2.default();
-var lightbox = new _Lightbox2.default();
+new _Navigation2.default();
+new _RevealOnScroll2.default((0, _jquery2.default)('.abilities__list,\n      .profile--reveal,\n      .experience--reveal,\n      .projects .row'), '100%');
+new _Tooltip2.default();
+new _ZoomHover2.default();
+new _Lightbox2.default();
 
 /***/ })
 /******/ ]);

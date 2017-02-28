@@ -3,7 +3,7 @@
     display: block;
 
     &--star {
-        background-size: 75px; 
+        background-size: 75px;
         width: 18px;
         height: 18px;
 
@@ -14,19 +14,19 @@
         }
 
         &--filled {
-            background-position: 0px 0px;
+            background-position: 0 0;
         }
 
         &--half {
-            background-position: -18px 0px;
+            background-position: -18px 0;
 
             @mixin atSmall {
-                background-position: -21px 0px;
+                background-position: -21px 0;
             }
         }
 
         &--empty {
-            background-position: -36px 0px;
+            background-position: -36px 0;
 
             @mixin atXSmall {
                 background-position: -41px 0;

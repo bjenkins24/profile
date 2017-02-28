@@ -4,12 +4,13 @@
 
     &__list {
         @mixin clearfix;
+
         list-style: none;
         padding: 0;
         margin: 0;
 
         li {
-            padding: .5rem 0;
+            padding: 0.5rem 0;
         }
 
         li:hover {
@@ -17,17 +18,16 @@
         }
 
         &--no-hover li:hover {
-            background: transparent; 
+            background: transparent;
             cursor: default;
         }
 
         &__label {
-            font-size: .80rem;
+            font-size: 0.8rem;
 
             @mixin atXSmall {
                 font-size: 1.1rem;
             }
-
         }
 
         &__level {
@@ -39,5 +39,4 @@
             }
         }
     }
-
 }

@@ -25,7 +25,6 @@
     }
 
     &__details {
-
         @mixin atXSmall {
             clear: both;
 
@@ -51,7 +50,7 @@
                 margin-bottom: 1rem;
                 float: left;
                 margin-right: 1rem;
-                font-size: .8rem;
+                font-size: 0.8rem;
 
                 @mixin atXSmall {
                     margin-right: 2rem;
@@ -60,12 +59,12 @@
 
                 @mixin atSmall {
                     float: none;
-                    margin-right: 0
+                    margin-right: 0;
                 }
 
                 strong {
                     display: inline-block;
-                    margin-bottom: .3rem;
+                    margin-bottom: 0.3rem;
                 }
             }
         }

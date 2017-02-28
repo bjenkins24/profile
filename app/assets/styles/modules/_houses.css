@@ -1,13 +1,13 @@
 @keyframes houses__notes-left {
-    100%  {
-        transform: translate3d(17px, -17px, 0) rotate(20deg); 
+    100% {
+        transform: translate3d(17px, -17px, 0) rotate(20deg);
         opacity: 0;
     }
 }
 
 @keyframes houses__notes-right {
-    100%  {
-        transform: translate3d(-17px, -17px, 0) rotate(-20deg); 
+    100% {
+        transform: translate3d(-17px, -17px, 0) rotate(-20deg);
         opacity: 0;
     }
 }
@@ -82,18 +82,19 @@
             width: 550px;
             height: 470px;
         }
+
         @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-left.png');
             background-size: cover;
             width: 700px;
             height: 590px;
         }
+
         @mixin atHouseLarge {
             background: url('$img-dir-large/houses-left.png');
             width: 823px;
             height: 704px;
         }
-
     }
 
     &__middle {
@@ -108,17 +109,18 @@
             height: 328px;
             bottom: 0;
         }
+
         @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-middle.png');
             height: 415px;
             bottom: -8px;
         }
+
         @mixin atHouseLarge {
             background: url('$img-dir-large/houses-middle.png');
             height: 488px;
             bottom: 0;
         }
-
     }
 
     &__right {
@@ -128,19 +130,21 @@
         position: fixed;
         right: 0;
         z-index: 2;
-        
+
         @mixin atHouseSmall {
             background: url('$img-dir-small/houses-right.png');
             width: 550px;
             height: 406px;
             bottom: 0;
         }
+
         @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-right.png');
             width: 700px;
             height: 517px;
             bottom: -9px;
         }
+
         @mixin atHouseLarge {
             background: url('$img-dir-large/houses-right.png');
             width: 823px;
@@ -148,18 +152,16 @@
             bottom: 0;
         }
     }
-    
+
     &__notes {
-        
         & > div {
-            opacity: .8;
+            opacity: 0.8;
             position: absolute;
             z-index: 3;
             background-image: url('$img-dir-icons/notes.png');
         }
 
         &__left-1 {
-
             &__note-1 {
                 transform: rotate(-46deg);
 
@@ -208,7 +210,7 @@
                     height: 27px;
                     background-size: 57px;
                     bottom: 384px;
-                    left: 102px;       
+                    left: 102px;
                 }
 
                 @mixin atHouseMedium {
@@ -252,7 +254,7 @@
                     height: 41px;
                     background-size: 104px;
                     bottom: 511px;
-                    left: 151px;   
+                    left: 151px;
                 }
 
                 @mixin atHouseLarge {
@@ -261,12 +263,11 @@
                     height: 47px;
                     background-size: 122px;
                     bottom: 601px;
-                    left: 176px;                   
+                    left: 176px;
                 }
             }
 
             &__note-4 {
-
                 &--animate {
                     animation: houses__notes-left 3s infinite 0.3s;
                 }
@@ -279,7 +280,6 @@
                     bottom: 436px;
                     left: 102px;
                 }
-
 
                 @mixin atHouseMedium {
                     background-position: -48px -3px;
@@ -296,20 +296,17 @@
                     height: 52px;
                     background-size: 115px;
                     bottom: 649px;
-                    left: 152px;                   
+                    left: 152px;
                 }
-
             }
-
         }
 
         &__left-2 {
-        
             &__note-1 {
                 transform: rotate(25deg);
 
                 &--animate {
-                    animation: houses__notes-left 1.75s infinite .05s;
+                    animation: houses__notes-left 1.75s infinite 0.05s;
                 }
 
                 @mixin atHouseSmall {
@@ -336,7 +333,7 @@
                     height: 21px;
                     background-size: 49px;
                     bottom: 552px;
-                    left: 362px;                   
+                    left: 362px;
                 }
             }
 
@@ -344,7 +341,7 @@
                 transform: rotate(-8deg);
 
                 &--animate {
-                    animation: houses__notes-left 2.25s infinite .125s;
+                    animation: houses__notes-left 2.25s infinite 0.125s;
                 }
 
                 @mixin atHouseSmall {
@@ -371,7 +368,7 @@
                     height: 27px;
                     background-size: 73px;
                     bottom: 578px;
-                    left: 351px;                   
+                    left: 351px;
                 }
             }
 
@@ -379,7 +376,7 @@
                 transform: rotate(-4deg);
 
                 &--animate {
-                    animation: houses__notes-left 2.65s infinite .175s;
+                    animation: houses__notes-left 2.65s infinite 0.175s;
                 }
 
                 @mixin atHouseSmall {
@@ -406,19 +403,17 @@
                     height: 38px;
                     background-size: 75px;
                     bottom: 607px;
-                    left: 360px;                   
+                    left: 360px;
                 }
             }
-
         }
 
         &__left-3 {
-        
             &__note-1 {
                 transform: rotate(25deg);
 
                 &--animate {
-                    animation: houses__notes-left 1.8s infinite .075s;
+                    animation: houses__notes-left 1.8s infinite 0.075s;
                 }
 
                 @mixin atHouseSmall {
@@ -445,7 +440,7 @@
                     height: 21px;
                     background-size: 44px;
                     bottom: 414px;
-                    left: 558px;                   
+                    left: 558px;
                 }
             }
 
@@ -453,7 +448,7 @@
                 transform: rotate(-10deg);
 
                 &--animate {
-                    animation: houses__notes-left 2.1s infinite .15s;
+                    animation: houses__notes-left 2.1s infinite 0.15s;
                 }
 
                 @mixin atHouseSmall {
@@ -480,14 +475,13 @@
                     height: 27px;
                     background-size: 57px;
                     bottom: 431px;
-                    left: 551px;                   
+                    left: 551px;
                 }
             }
 
             &__note-3 {
-
                 &--animate {
-                    animation: houses__notes-left 2.4s infinite .18s;
+                    animation: houses__notes-left 2.4s infinite 0.18s;
                 }
 
                 @mixin atHouseSmall {
@@ -514,15 +508,12 @@
                     height: 26px;
                     background-size: 58px;
                     bottom: 461px;
-                    left: 536px;                   
+                    left: 536px;
                 }
             }
-
         }
 
-
         &__left-5 {
-
             &__note-1 {
                 transform: rotate(5deg);
 
@@ -554,7 +545,7 @@
                     height: 10px;
                     bottom: 342px;
                     background-size: 20px;
-                    left: 671px;                   
+                    left: 671px;
                 }
             }
 
@@ -589,7 +580,7 @@
                     height: 11px;
                     bottom: 350px;
                     background-size: 26px;
-                    left: 681px;   
+                    left: 681px;
                 }
             }
 
@@ -624,12 +615,11 @@
                     height: 14px;
                     bottom: 363px;
                     left: 688px;
-                    background-size: 32px;                   
+                    background-size: 32px;
                 }
             }
 
             &__note-4 {
-
                 &--animate {
                     animation: houses__notes-left 2.5s infinite 0.3s;
                 }
@@ -658,15 +648,12 @@
                     height: 16px;
                     bottom: 379px;
                     left: 694px;
-                    background-size: 35px;                   
+                    background-size: 35px;
                 }
             }
-
         }
 
-
         &__right-1 {
-
             &__note-1 {
                 transform: rotate(-11deg);
 
@@ -698,7 +685,7 @@
                     height: 40px;
                     bottom: 491px;
                     background-size: 85px;
-                    right: 271px;                   
+                    right: 271px;
                 }
             }
 
@@ -733,7 +720,7 @@
                     height: 47px;
                     bottom: 537px;
                     right: 301px;
-                    background-size: 103px;                   
+                    background-size: 103px;
                 }
             }
 
@@ -768,12 +755,11 @@
                     height: 43px;
                     bottom: 599px;
                     right: 279px;
-                    background-size: 88px;                   
+                    background-size: 88px;
                 }
             }
 
             &__note-4 {
-
                 &--animate {
                     animation: houses__notes-right 2.7s infinite 0.55s;
                 }
@@ -793,7 +779,7 @@
                     height: 38px;
                     bottom: 557px;
                     right: 219px;
-                    background-size: 87px;                   
+                    background-size: 87px;
                 }
 
                 @mixin atHouseLarge {
@@ -805,11 +791,9 @@
                     background-size: 102px;
                 }
             }
-
         }
 
         &__right-2 {
-
             &__note-1 {
                 transform: rotate(22deg);
 
@@ -841,14 +825,13 @@
                     height: 20px;
                     bottom: 446px;
                     background-size: 52px;
-                    right: 450px;                   
+                    right: 450px;
                 }
-
-            } 
+            }
 
             &__note-2 {
                 transform: rotate(-16deg);
-                
+
                 &--animate {
                     animation: houses__notes-right 1.9s infinite 0.15s;
                 }
@@ -877,7 +860,7 @@
                     height: 24px;
                     bottom: 466px;
                     background-size: 57px;
-                    right: 456px;                   
+                    right: 456px;
                 }
             }
 
@@ -903,7 +886,7 @@
                     height: 25px;
                     bottom: 423px;
                     right: 389px;
-                    background-size: 57px;                   
+                    background-size: 57px;
                 }
 
                 @mixin atHouseLarge {
@@ -912,7 +895,7 @@
                     height: 29px;
                     bottom: 498px;
                     right: 458px;
-                    background-size: 67px;                   
+                    background-size: 67px;
                 }
             }
 
@@ -947,7 +930,7 @@
                     height: 40px;
                     bottom: 536px;
                     right: 458px;
-                    background-size: 74px;                    
+                    background-size: 74px;
                 }
             }
 
@@ -980,16 +963,13 @@
                     height: 32px;
                     bottom: 565px;
                     right: 431px;
-                    background-size: 69px;                       
+                    background-size: 69px;
                 }
             }
-
         }
 
         &__right-4 {
-
             &__note-1 {
-
                 &--animate {
                     animation: houses__notes-right 2s infinite;
                 }
@@ -1018,9 +998,8 @@
                     height: 17px;
                     bottom: 399px;
                     right: 618px;
-                    background-size: 33px;                      
+                    background-size: 33px;
                 }
-
             }
 
             &__note-2 {
@@ -1054,7 +1033,7 @@
                     height: 24px;
                     bottom: 407px;
                     background-size: 45px;
-                    right: 629px;                   
+                    right: 629px;
                 }
             }
 
@@ -1062,7 +1041,7 @@
                 transform: rotate(26deg);
 
                 &--animate {
-                    animation: houses__notes-right 2.67s infinite 0.33s;           
+                    animation: houses__notes-right 2.67s infinite 0.33s;
                 }
 
                 @mixin atHouseSmall {
@@ -1089,12 +1068,11 @@
                     height: 20px;
                     bottom: 427px;
                     right: 621px;
-                    background-size: 46px;                   
+                    background-size: 46px;
                 }
             }
 
             &__note-4 {
-
                 &--animate {
                     animation: houses__notes-right 3.24s infinite 0.41s;
                 }
@@ -1126,8 +1104,6 @@
                     background-size: 45px;
                 }
             }
-
         }
-
-    }         
+    }
 }

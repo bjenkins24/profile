@@ -1,20 +1,26 @@
 @import "normalize.css";
+
+/* Base */
 @import "base/_variables";
 @import "base/_mixins";
 @import "base/_global";
+
+/* Houses */
+@import "modules/_large-hero";
+@import "modules/_houses";
+
+/* Misc */
 @import "modules/_row";
 @import "modules/_wrapper";
 @import "modules/_zoom-hover";
 @import "modules/_reveal-item";
 @import "modules/_lightbox";
 @import "modules/_hide";
-
-@import "modules/_large-hero";
-@import "modules/_houses";
-
 @import "modules/_icon";
 @import "modules/_btn";
 @import "modules/_tooltip";
+
+/* Sections */
 @import "modules/_page-section";
 @import "modules/_site-header";
 @import "modules/_profile";

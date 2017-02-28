@@ -1,5 +1,5 @@
 .zoom-hover {
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
     width: auto;
 
     @mixin atXSmall {
@@ -7,17 +7,17 @@
     }
 
     &__overlay {
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
         opacity: 0;
-        background-color: rgba(0,0,0,0.3); 
+        background-color: rgba(0, 0, 0, 0.3);
         width: 102%;
         height: 110%;
-        top: -5%;    
+        top: -5%;
         left: -1%;
         position: absolute;
         border-radius: 8px;
         padding: 2rem;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 
         @mixin atXSmall {
             width: 96%;
@@ -30,7 +30,7 @@
             left: 50%;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: .2rem;
+            letter-spacing: 0.2rem;
             font-size: 1.6rem;
 
             @mixin atSmall {
@@ -44,14 +44,13 @@
     }
 
     &:hover {
-
         @mixin atMedium {
             transform: scale(1.04);
         }
 
         & .zoom-hover__overlay {
-           opacity: 1;
-       }
+            opacity: 1;
+        }
     }
 
     &--clickable {

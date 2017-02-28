@@ -1,5 +1,6 @@
 .row {
     @mixin clearfix;
+
     position: relative;
 
     &--gutters {
@@ -7,7 +8,7 @@
     }
 
     &--no-gutters-until-xsmall {
-        margin-right: 0
+        margin-right: 0;
     }
 
     &--gutters-large {
@@ -23,7 +24,7 @@
     }
 
     &--no-gutters-until-xsmall {
-        padding-right: 0
+        padding-right: 0;
     }
 
     &--b-margin {
@@ -39,7 +40,6 @@
     }
 
     @mixin atXSmall {
-
         &__xsmall-6 {
             width: 50%;
             float: left;
@@ -57,15 +57,12 @@
         &--no-gutters-until-xsmall > div {
             padding-right: 65px;
         }
-
-
     }
 
     @mixin atSmall {
-
         &__small-4 {
             float: left;
-            width: 33.33%
+            width: 33.33%;
         }
 
         &__small-5 {
@@ -80,7 +77,7 @@
 
         &__small-6 {
             float: left;
-            width: 50%
+            width: 50%;
         }
 
         &__small-7 {
@@ -92,7 +89,6 @@
                 width: 58.33%;
             }
         }
-
     }
 
     @mixin atMedium {
@@ -111,7 +107,7 @@
 
         &__medium-4 {
             float: left;
-            width: 33.33%
+            width: 33.33%;
         }
 
         &__medium-5 {
@@ -122,7 +118,6 @@
                 width: 41.66%;
                 float: right;
             }
-
         }
 
         &__medium-6 {
@@ -140,21 +135,16 @@
             }
         }
 
-
         &__medium-8 {
             float: left;
-            width: 66.66%
+            width: 66.66%;
         }
-
     }
 
     @mixin atLarge {
-        
         &__large-4 {
             float: left;
-            width: 33.33%
+            width: 33.33%;
         }
-
     }
-
 }
