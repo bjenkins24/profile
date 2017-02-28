@@ -10,8 +10,19 @@
         font-weight: 300;
         text-transform: uppercase;
         letter-spacing: .5rem;
-        font-size: 3rem;
+        font-size: 2rem;
         margin-bottom: 1.3rem;
+        margin-top: 0;
+
+        @mixin atSmall {
+            margin-top: .37em;
+            font-size: 2.5rem;
+        }
+
+        @mixin atMedium {
+            margin-top: .67em;
+            font-size: 3rem;
+        }
 
         &--white {
             color: $white;
@@ -21,7 +32,15 @@
     &__subtitle {
         text-align: center;
         font-weight: 300;
-        font-size: 1.3rem;
+        font-size: 1rem;
+
+        @mixin atSmall {
+            font-size: 1.1rem;
+        }
+
+        @mixin atMedium {
+            font-size: 1.3rem;
+        }
 
         &--white {
             color: $white;
@@ -29,10 +48,18 @@
     }
 
     &__section-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 300;
         color: #4f7b78;
         text-shadow: 1px 1px 1px rgba(255,255,255, .1);
+
+        @mixin atSmall {
+            font-size: 1.7rem;
+        }
+
+        @mixin atMedium {
+            font-size: 2rem;
+        }
 
         &--white {
             color: #f6f6f4;

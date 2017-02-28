@@ -1,31 +1,72 @@
 .profile {
     z-index: 3;
     position: relative;
+    clear: left;
+
+    &__about {
+        @mixin atXSmall {
+            margin-bottom: 1.5rem;
+        }
+
+        @mixin atSmall {
+            margin-bottom: 0;
+        }
+    }
 
     &__photo {
-        margin: 0 auto;
+        margin: 2rem auto;
         display: block;
         border-radius: 50%;
         border: 6px solid $white-dark;
-    }
 
-    &--t-full-margin {
-        margin-top: 100vh;
-        padding-top: 6.18rem;
+        @mixin atXSmall {
+            margin: 0 auto;
+        }
     }
 
     &__details {
-        list-style: none;
-        margin: 0;
-        padding: 0;
 
+        @mixin atXSmall {
+            clear: both;
 
-        & li {
-            margin-bottom: 1rem;
+            &__title {
+                display: none;
+            }
+        }
 
-            strong {
-                display: inline-block;
-                margin-bottom: .3rem;
+        @mixin atSmall {
+            clear: none;
+
+            &__title {
+                display: block;
+            }
+        }
+
+        &__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            & li {
+                margin-bottom: 1rem;
+                float: left;
+                margin-right: 1rem;
+                font-size: .8rem;
+
+                @mixin atXSmall {
+                    margin-right: 2rem;
+                    font-size: 1rem;
+                }
+
+                @mixin atSmall {
+                    float: none;
+                    margin-right: 0
+                }
+
+                strong {
+                    display: inline-block;
+                    margin-bottom: .3rem;
+                }
             }
         }
     }

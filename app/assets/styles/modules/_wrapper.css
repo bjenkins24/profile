@@ -10,7 +10,13 @@
         max-width: 500px;
     }
 
-    &--overflow-visible {
-        overflow: visible;
+    &--overflow-hidden-until-medium {
+        overflow: hidden;
+
+        @mixin atMedium {
+            overflow: visible;
+        }
     }
+
+
 }

@@ -1,29 +1,99 @@
+@keyframes houses__notes-left {
+    100%  {
+        transform: translate3d(17px, -17px, 0) rotate(20deg); 
+        opacity: 0;
+    }
+}
+
+@keyframes houses__notes-right {
+    100%  {
+        transform: translate3d(-17px, -17px, 0) rotate(-20deg); 
+        opacity: 0;
+    }
+}
+
+@define-mixin atHouseSmall {
+    @media (min-width: 1200px) {
+        @mixin-content;
+    }
+}
+
+@define-mixin atHouseMedium {
+    @media (min-width: 1416px) {
+        @mixin-content;
+    }
+}
+
+@define-mixin atHouseLarge {
+    @media (min-width: 1664px) {
+        @mixin-content;
+    }
+}
+
 .houses {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: none;
+
+    &__full {
+        display: block;
+        position: fixed;
+        bottom: 0;
+    }
+
+    @mixin atHouseSmall {
+        display: block;
+        height: 470px;
+
+        &__full {
+            display: none;
+        }
+    }
+
+    @mixin atHouseMedium {
+        display: block;
+        height: 599px;
+
+        &__full {
+            display: none;
+        }
+    }
+
+    @mixin atHouseLarge {
+        display: block;
+        height: 704px;
+
+        &__full {
+            display: none;
+        }
+    }
 
     &__left {
-        background: url('$img-dir-xsmall/houses-left.png');
-        width: 150px;
-        height: 124px;
         position: fixed;
         bottom: 0;
         z-index: 2;
+        background: url('$img-dir-xsmall/houses-left.png');
+        width: 150px;
+        height: 124px;
 
-        @mixin atSmall {
+        @mixin atHouseSmall {
             background: url('$img-dir-small/houses-left.png');
             width: 550px;
             height: 470px;
         }
-        @mixin atMedium {
+        @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-left.png');
             background-size: cover;
             width: 700px;
             height: 590px;
         }
-        @mixin atLarge {
+        @mixin atHouseLarge {
             background: url('$img-dir-large/houses-left.png');
             width: 823px;
             height: 704px;
         }
+
     }
 
     &__middle {
@@ -33,20 +103,22 @@
         position: fixed;
         z-index: 1;
 
-        @mixin atSmall {
+        @mixin atHouseSmall {
             background: url('$img-dir-small/houses-middle.png');
             height: 328px;
+            bottom: 0;
         }
-        @mixin atMedium {
+        @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-middle.png');
             height: 415px;
             bottom: -8px;
         }
-        @mixin atLarge {
+        @mixin atHouseLarge {
             background: url('$img-dir-large/houses-middle.png');
             height: 488px;
             bottom: 0;
         }
+
     }
 
     &__right {
@@ -57,22 +129,1005 @@
         right: 0;
         z-index: 2;
         
-        @mixin atSmall {
+        @mixin atHouseSmall {
             background: url('$img-dir-small/houses-right.png');
             width: 550px;
             height: 406px;
+            bottom: 0;
         }
-        @mixin atMedium {
+        @mixin atHouseMedium {
             background: url('$img-dir-medium/houses-right.png');
             width: 700px;
             height: 517px;
             bottom: -9px;
         }
-        @mixin atLarge {
+        @mixin atHouseLarge {
             background: url('$img-dir-large/houses-right.png');
             width: 823px;
             height: 608px;
             bottom: 0;
         }
     }
+    
+    &__notes {
+        
+        & > div {
+            opacity: .8;
+            position: absolute;
+            z-index: 3;
+            background-image: url('$img-dir-icons/notes.png');
+        }
+
+        &__left-1 {
+
+            &__note-1 {
+                transform: rotate(-46deg);
+
+                &--animate {
+                    animation: houses__notes-left 1.75s infinite;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -15px;
+                    width: 11px;
+                    height: 14px;
+                    background-size: 30px;
+                    bottom: 387px;
+                    left: 81px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -19px;
+                    width: 14px;
+                    height: 18px;
+                    background-size: 38px;
+                    bottom: 490px;
+                    left: 102px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -22px;
+                    width: 17px;
+                    height: 21px;
+                    background-size: 45px;
+                    bottom: 576px;
+                    left: 120px;
+                }
+            }
+
+            &__note-2 {
+                transform: rotate(14deg);
+
+                &--animate {
+                    animation: houses__notes-left 2s infinite 0.1s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -50px;
+                    width: 7px;
+                    height: 27px;
+                    background-size: 57px;
+                    bottom: 384px;
+                    left: 102px;       
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -63px;
+                    width: 9px;
+                    height: 34px;
+                    background-size: 72px;
+                    bottom: 486px;
+                    left: 129px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -74px;
+                    width: 11px;
+                    height: 40px;
+                    background-size: 85px;
+                    bottom: 572px;
+                    left: 152px;
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(-3deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.25s infinite 0.2s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -71px -2px;
+                    width: 11px;
+                    height: 32px;
+                    background-size: 82px;
+                    bottom: 404px;
+                    left: 119px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -90px -3px;
+                    width: 14px;
+                    height: 41px;
+                    background-size: 104px;
+                    bottom: 511px;
+                    left: 151px;   
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -106px -4px;
+                    width: 16px;
+                    height: 47px;
+                    background-size: 122px;
+                    bottom: 601px;
+                    left: 176px;                   
+                }
+            }
+
+            &__note-4 {
+
+                &--animate {
+                    animation: houses__notes-left 3s infinite 0.3s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -38px -2px;
+                    width: 29px;
+                    height: 36px;
+                    background-size: 77px;
+                    bottom: 436px;
+                    left: 102px;
+                }
+
+
+                @mixin atHouseMedium {
+                    background-position: -48px -3px;
+                    width: 37px;
+                    height: 45px;
+                    background-size: 98px;
+                    bottom: 552px;
+                    left: 129px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -56px -4px;
+                    width: 43px;
+                    height: 52px;
+                    background-size: 115px;
+                    bottom: 649px;
+                    left: 152px;                   
+                }
+
+            }
+
+        }
+
+        &__left-2 {
+        
+            &__note-1 {
+                transform: rotate(25deg);
+
+                &--animate {
+                    animation: houses__notes-left 1.75s infinite .05s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 5px;
+                    width: 5px;
+                    height: 14px;
+                    background-size: 33px;
+                    bottom: 371px;
+                    left: 243px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 6px;
+                    width: 6px;
+                    height: 18px;
+                    background-size: 42px;
+                    bottom: 469px;
+                    left: 308px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 6px;
+                    width: 6px;
+                    height: 21px;
+                    background-size: 49px;
+                    bottom: 552px;
+                    left: 362px;                   
+                }
+            }
+
+            &__note-2 {
+                transform: rotate(-8deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.25s infinite .125s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 7px;
+                    width: 7px;
+                    height: 18px;
+                    background-size: 49px;
+                    bottom: 388px;
+                    left: 228px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 9px;
+                    width: 9px;
+                    height: 23px;
+                    background-size: 62px;
+                    bottom: 491px;
+                    left: 298px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 10px;
+                    width: 10px;
+                    height: 27px;
+                    background-size: 73px;
+                    bottom: 578px;
+                    left: 351px;                   
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(-4deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.65s infinite .175s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 50px;
+                    width: 24px;
+                    height: 25px;
+                    background-size: 50px;
+                    bottom: 408px;
+                    left: 241px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 64px;
+                    width: 31px;
+                    height: 32px;
+                    background-size: 64px;
+                    bottom: 516px;
+                    left: 306px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 75px;
+                    width: 36px;
+                    height: 38px;
+                    background-size: 75px;
+                    bottom: 607px;
+                    left: 360px;                   
+                }
+            }
+
+        }
+
+        &__left-3 {
+        
+            &__note-1 {
+                transform: rotate(25deg);
+
+                &--animate {
+                    animation: houses__notes-left 1.8s infinite .075s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 4px;
+                    width: 4px;
+                    height: 14px;
+                    background-size: 29px;
+                    bottom: 278px;
+                    left: 374px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 5px;
+                    width: 5px;
+                    height: 18px;
+                    background-size: 37px;
+                    bottom: 352px;
+                    left: 474px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 6px;
+                    width: 6px;
+                    height: 21px;
+                    background-size: 44px;
+                    bottom: 414px;
+                    left: 558px;                   
+                }
+            }
+
+            &__note-2 {
+                transform: rotate(-10deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.1s infinite .15s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 5px;
+                    width: 5px;
+                    height: 18px;
+                    background-size: 38px;
+                    bottom: 289px;
+                    left: 369px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 7px;
+                    width: 7px;
+                    height: 23px;
+                    background-size: 48px;
+                    bottom: 366px;
+                    left: 468px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 8px;
+                    width: 8px;
+                    height: 27px;
+                    background-size: 57px;
+                    bottom: 431px;
+                    left: 551px;                   
+                }
+            }
+
+            &__note-3 {
+
+                &--animate {
+                    animation: houses__notes-left 2.4s infinite .18s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: 19px;
+                    width: 14px;
+                    height: 17px;
+                    background-size: 38px;
+                    bottom: 310px;
+                    left: 362px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: 25px;
+                    width: 18px;
+                    height: 22px;
+                    background-size: 49px;
+                    bottom: 393px;
+                    left: 459px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: 30px;
+                    width: 22px;
+                    height: 26px;
+                    background-size: 58px;
+                    bottom: 461px;
+                    left: 536px;                   
+                }
+            }
+
+        }
+
+
+        &__left-5 {
+
+            &__note-1 {
+                transform: rotate(5deg);
+
+                &--animate {
+                    animation: houses__notes-left 1.75s infinite;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -20px;
+                    width: 4px;
+                    height: 6px;
+                    bottom: 229px;
+                    background-size: 13px;
+                    left: 450px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -26px;
+                    width: 6px;
+                    height: 8px;
+                    bottom: 290px;
+                    background-size: 17px;
+                    left: 570px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -30px;
+                    width: 7px;
+                    height: 10px;
+                    bottom: 342px;
+                    background-size: 20px;
+                    left: 671px;                   
+                }
+            }
+
+            &__note-2 {
+                transform: rotate(-9deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.5s infinite 0.1s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -65px;
+                    width: 3px;
+                    height: 7px;
+                    bottom: 235px;
+                    background-size: 17px;
+                    left: 457px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -85px;
+                    width: 4px;
+                    height: 9px;
+                    bottom: 298px;
+                    background-size: 22px;
+                    left: 579px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -100px;
+                    width: 4px;
+                    height: 11px;
+                    bottom: 350px;
+                    background-size: 26px;
+                    left: 681px;   
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(-8deg);
+
+                &--animate {
+                    animation: houses__notes-left 2.25s infinite 0.2s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -82px;
+                    width: 2px;
+                    height: 9px;
+                    bottom: 244px;
+                    left: 462px;
+                    background-size: 21px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -105px;
+                    width: 4px;
+                    height: 12px;
+                    bottom: 309px;
+                    left: 585px;
+                    background-size: 27px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -124px;
+                    width: 4px;
+                    height: 14px;
+                    bottom: 363px;
+                    left: 688px;
+                    background-size: 32px;                   
+                }
+            }
+
+            &__note-4 {
+
+                &--animate {
+                    animation: houses__notes-left 2.5s infinite 0.3s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -34px;
+                    width: 9px;
+                    height: 11px;
+                    bottom: 254px;
+                    left: 466px;
+                    background-size: 23px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -44px;
+                    width: 12px;
+                    height: 14px;
+                    bottom: 322px;
+                    left: 590px;
+                    background-size: 30px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -52px;
+                    width: 14px;
+                    height: 16px;
+                    bottom: 379px;
+                    left: 694px;
+                    background-size: 35px;                   
+                }
+            }
+
+        }
+
+
+        &__right-1 {
+
+            &__note-1 {
+                transform: rotate(-11deg);
+
+                &--animate {
+                    animation: houses__notes-right 1.85s infinite 0.35s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -49px;
+                    width: 8px;
+                    height: 27px;
+                    bottom: 325px;
+                    background-size: 57px;
+                    right: 181px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -62px;
+                    width: 10px;
+                    height: 34px;
+                    bottom: 417px;
+                    background-size: 72px;
+                    right: 230px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -74px;
+                    width: 11px;
+                    height: 40px;
+                    bottom: 491px;
+                    background-size: 85px;
+                    right: 271px;                   
+                }
+            }
+
+            &__note-2 {
+                transform: rotate(29deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.15s infinite 0.45s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -60px;
+                    width: 9px;
+                    height: 31px;
+                    bottom: 360px;
+                    right: 202px;
+                    background-size: 69px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -76px;
+                    width: 12px;
+                    height: 40px;
+                    bottom: 456px;
+                    right: 256px;
+                    background-size: 88px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -89px;
+                    width: 14px;
+                    height: 47px;
+                    bottom: 537px;
+                    right: 301px;
+                    background-size: 103px;                   
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(-50deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.3s infinite 0.5s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -29px;
+                    width: 21px;
+                    height: 28px;
+                    bottom: 402px;
+                    right: 187px;
+                    background-size: 59px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -37px;
+                    width: 27px;
+                    height: 36px;
+                    bottom: 509px;
+                    right: 237px;
+                    background-size: 75px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -43px;
+                    width: 32px;
+                    height: 43px;
+                    bottom: 599px;
+                    right: 279px;
+                    background-size: 88px;                   
+                }
+            }
+
+            &__note-4 {
+
+                &--animate {
+                    animation: houses__notes-right 2.7s infinite 0.55s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -68px;
+                    width: 33px;
+                    height: 30px;
+                    bottom: 440px;
+                    right: 173px;
+                    background-size: 68px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -87px;
+                    width: 42px;
+                    height: 38px;
+                    bottom: 557px;
+                    right: 219px;
+                    background-size: 87px;                   
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -102px;
+                    width: 49px;
+                    height: 45px;
+                    bottom: 655px;
+                    right: 258px;
+                    background-size: 102px;
+                }
+            }
+
+        }
+
+        &__right-2 {
+
+            &__note-1 {
+                transform: rotate(22deg);
+
+                &--animate {
+                    animation: houses__notes-right 1.75s infinite;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -30px;
+                    width: 4px;
+                    height: 13px;
+                    bottom: 299px;
+                    background-size: 34px;
+                    right: 302px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -38px;
+                    width: 6px;
+                    height: 17px;
+                    bottom: 379px;
+                    background-size: 44px;
+                    right: 383px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -45px;
+                    width: 7px;
+                    height: 20px;
+                    bottom: 446px;
+                    background-size: 52px;
+                    right: 450px;                   
+                }
+
+            } 
+
+            &__note-2 {
+                transform: rotate(-16deg);
+                
+                &--animate {
+                    animation: houses__notes-right 1.9s infinite 0.15s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -71px;
+                    width: 4px;
+                    height: 15px;
+                    bottom: 312px;
+                    background-size: 37px;
+                    right: 306px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -90px;
+                    width: 6px;
+                    height: 20px;
+                    bottom: 396px;
+                    background-size: 48px;
+                    right: 388px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -106px;
+                    width: 8px;
+                    height: 24px;
+                    bottom: 466px;
+                    background-size: 57px;
+                    right: 456px;                   
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(22deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.2s infinite 0.19s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -39px -2px;
+                    width: 5px;
+                    height: 19px;
+                    bottom: 334px;
+                    right: 307px;
+                    background-size: 45px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -50px -3px;
+                    width: 7px;
+                    height: 25px;
+                    bottom: 423px;
+                    right: 389px;
+                    background-size: 57px;                   
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -58px -4px;
+                    width: 9px;
+                    height: 29px;
+                    bottom: 498px;
+                    right: 458px;
+                    background-size: 67px;                   
+                }
+            }
+
+            &__note-4 {
+                transform: rotate(-18deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.7s infinite 0.32s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -42px;
+                    width: 7px;
+                    height: 26px;
+                    bottom: 360px;
+                    right: 307px;
+                    background-size: 49px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -54px;
+                    width: 9px;
+                    height: 34px;
+                    bottom: 456px;
+                    right: 389px;
+                    background-size: 63px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -64px;
+                    width: 10px;
+                    height: 40px;
+                    bottom: 536px;
+                    right: 458px;
+                    background-size: 74px;                    
+                }
+            }
+
+            &__note-5 {
+                &--animate {
+                    animation: houses__notes-right 3.2s infinite 0.6s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -22px;
+                    width: 16px;
+                    height: 21px;
+                    bottom: 379px;
+                    right: 289px;
+                    background-size: 45px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -28px;
+                    width: 21px;
+                    height: 27px;
+                    bottom: 480px;
+                    right: 366px;
+                    background-size: 57px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -34px;
+                    width: 25px;
+                    height: 32px;
+                    bottom: 565px;
+                    right: 431px;
+                    background-size: 69px;                       
+                }
+            }
+
+        }
+
+        &__right-4 {
+
+            &__note-1 {
+
+                &--animate {
+                    animation: houses__notes-right 2s infinite;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -11px;
+                    width: 8px;
+                    height: 11px;
+                    bottom: 267px;
+                    right: 414px;
+                    background-size: 22px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -14px;
+                    width: 10px;
+                    height: 14px;
+                    bottom: 339px;
+                    right: 525px;
+                    background-size: 28px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -16px;
+                    width: 12px;
+                    height: 17px;
+                    bottom: 399px;
+                    right: 618px;
+                    background-size: 33px;                      
+                }
+
+            }
+
+            &__note-2 {
+                transform: rotate(-16deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.36s infinite 0.24s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -56px;
+                    width: 4px;
+                    height: 16px;
+                    bottom: 273px;
+                    background-size: 30px;
+                    right: 422px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -71px;
+                    width: 5px;
+                    height: 20px;
+                    bottom: 346px;
+                    background-size: 38px;
+                    right: 535px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -84px;
+                    width: 6px;
+                    height: 24px;
+                    bottom: 407px;
+                    background-size: 45px;
+                    right: 629px;                   
+                }
+            }
+
+            &__note-3 {
+                transform: rotate(26deg);
+
+                &--animate {
+                    animation: houses__notes-right 2.67s infinite 0.33s;           
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -26px;
+                    width: 5px;
+                    height: 13px;
+                    bottom: 286px;
+                    right: 417px;
+                    background-size: 31px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -34px;
+                    width: 5px;
+                    height: 17px;
+                    bottom: 363px;
+                    right: 528px;
+                    background-size: 39px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -40px;
+                    width: 6px;
+                    height: 20px;
+                    bottom: 427px;
+                    right: 621px;
+                    background-size: 46px;                   
+                }
+            }
+
+            &__note-4 {
+
+                &--animate {
+                    animation: houses__notes-right 3.24s infinite 0.41s;
+                }
+
+                @mixin atHouseSmall {
+                    background-position: -15px;
+                    width: 11px;
+                    height: 14px;
+                    bottom: 299px;
+                    right: 420px;
+                    background-size: 30px;
+                }
+
+                @mixin atHouseMedium {
+                    background-position: -19px;
+                    width: 14px;
+                    height: 18px;
+                    bottom: 379px;
+                    right: 532px;
+                    background-size: 38px;
+                }
+
+                @mixin atHouseLarge {
+                    background-position: -22px;
+                    width: 17px;
+                    height: 21px;
+                    bottom: 446px;
+                    right: 626px;
+                    background-size: 45px;
+                }
+            }
+
+        }
+
+    }         
 }

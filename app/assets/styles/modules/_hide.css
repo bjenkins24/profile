@@ -1,0 +1,27 @@
+.hide {
+
+    &--visible-until-small {
+        opacity: 1;
+        visibility: visible;
+        position: static;
+
+        @mixin atSmall {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+        }
+    }
+
+    &--until-small {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+
+        @mixin atSmall {
+            opacity: 1;
+            visibility: visible;
+            position: static;
+        }
+    }
+
+}

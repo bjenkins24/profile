@@ -3,20 +3,34 @@
     display: block;
 
     &--star {
-        background-size: 85px; 
-        width: 20px;
-        height: 20px;
+        background-size: 75px; 
+        width: 18px;
+        height: 18px;
+
+        @mixin atXSmall {
+            background-size: 85px;
+            width: 20px;
+            height: 20px;
+        }
 
         &--filled {
             background-position: 0px 0px;
         }
 
         &--half {
-            background-position: -21px 0px;
+            background-position: -18px 0px;
+
+            @mixin atSmall {
+                background-position: -21px 0px;
+            }
         }
 
         &--empty {
-            background-position: -41px 0px;
+            background-position: -36px 0px;
+
+            @mixin atXSmall {
+                background-position: -41px 0;
+            }
         }
     }
 }

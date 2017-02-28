@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11328,9 +11328,13 @@ var _noframework = __webpack_require__(1);
 
 var _noframework2 = _interopRequireDefault(_noframework);
 
-var _jquerySmoothScroll = __webpack_require__(7);
+var _jquerySmoothScroll = __webpack_require__(8);
 
 var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
+
+var _MobileMenu = __webpack_require__(7);
+
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11343,25 +11347,33 @@ var Navigation = function () {
         this.siteHeader = (0, _jquery2.default)('.site-header');
         this.profileSection = (0, _jquery2.default)('.profile');
         this.pageSections = (0, _jquery2.default)('.page-section');
-        this.headerLinks = (0, _jquery2.default)(".primary-nav a");
+        this.headerLinks = (0, _jquery2.default)(".site-header__menu-content a");
         this.downArrow = (0, _jquery2.default)(".large-hero__arrow-box");
+
+        this.profileSection.before("<div class='site-header__placeholder'></div>");
+        this.navPlaceholder = (0, _jquery2.default)(".site-header__placeholder");
         this.init();
     }
 
     _createClass(Navigation, [{
         key: 'init',
         value: function init() {
+            this.mobileMenu = new _MobileMenu2.default();
             this.events();
-            this.makeHeaderSticky();
-            this.changeHeaderColor();
+
             this.addSmoothScrolling();
+            this.makeHeaderSticky();
+
+            this.addHeaderColor();
+            this.removeHeaderColor();
+
             this.createPageSectionWaypoints();
-            this.immediatelyScrollToTop();
         }
     }, {
         key: 'events',
         value: function events() {
             this.downArrow.click(this.scrollToProfile.bind(this));
+            this.headerLinks.click(this.mobileMenu.closeMenu.bind(this.mobileMenu));
         }
     }, {
         key: 'scrollToProfile',
@@ -11371,48 +11383,81 @@ var Navigation = function () {
             }, 900);
         }
     }, {
-        key: 'immediatelyScrollToTop',
-        value: function immediatelyScrollToTop() {
-            window.onbeforeunload = function () {
-                window.scrollTo(0, 0);
-            };
-        }
-    }, {
         key: 'addSmoothScrolling',
         value: function addSmoothScrolling() {
-            this.headerLinks.smoothScroll();
-        }
-    }, {
-        key: 'changeHeaderColor',
-        value: function changeHeaderColor() {
-            var that = this;
-            new Waypoint({
-                element: that.siteHeader[0],
-                handler: function handler(direction) {
-                    if (direction == 'down') {
-                        that.siteHeader.addClass('site-header--gray');
-                    } else {
-                        that.siteHeader.removeClass('site-header--gray');
-                    }
-                },
-                offset: "18%"
-            });
+            this.headerLinks.smoothScroll({ offset: -56 });
         }
     }, {
         key: 'makeHeaderSticky',
         value: function makeHeaderSticky() {
             var that = this;
+            var removeStickyCounter = 0;
             new Waypoint({
                 element: that.siteHeader[0],
                 handler: function handler(direction) {
                     if (direction == 'down') {
                         that.siteHeader.addClass('site-header--fixed');
-                        that.profileSection.addClass('profile--t-full-margin');
-                    } else {
-                        that.siteHeader.removeClass('site-header--fixed');
-                        that.profileSection.removeClass('profile--t-full-margin');
+                        that.navPlaceholder.addClass("site-header__placeholder--is-visible");
+
+                        if (removeStickyCounter === 0) {
+                            that.removeSticky();
+                            removeStickyCounter = removeStickyCounter + 1;
+                        }
                     }
                 }
+            });
+        }
+
+        /** This happens at the bottom of the nav placeholder arrow. It can't be attached
+        * to the site header because the site header is fixed at this point
+        */
+
+    }, {
+        key: 'removeSticky',
+        value: function removeSticky() {
+            var that = this;
+            new Waypoint({
+                element: that.navPlaceholder[0],
+                handler: function handler(direction) {
+                    if (direction == 'up') {
+                        that.mobileMenu.closeMenu();
+                        that.siteHeader.removeClass('site-header--fixed');
+                        that.navPlaceholder.removeClass("site-header__placeholder--is-visible");
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'addHeaderColor',
+        value: function addHeaderColor() {
+            var that = this;
+            new Waypoint({
+                element: that.downArrow[0],
+                handler: function handler(direction) {
+                    if (direction == 'down') {
+                        that.siteHeader.addClass('site-header--gray');
+                    }
+                },
+                offset: "13%"
+            });
+        }
+
+        /** This happens at the bottom of the nav placeholder. It can't be attached
+        * to the site header because the site header is fixed at this point
+        */
+
+    }, {
+        key: 'removeHeaderColor',
+        value: function removeHeaderColor() {
+            var that = this;
+            new Waypoint({
+                element: that.downArrow[0],
+                handler: function handler(direction) {
+                    if (direction == 'up') {
+                        that.siteHeader.removeClass('site-header--gray');
+                    }
+                },
+                offset: "13%"
             });
         }
     }, {
@@ -11577,6 +11622,7 @@ var Tooltip = function () {
             target.attr("data-matching-tooltip", tooltipId);
 
             tooltip.css("opacity", 1).html(tip).appendTo("body");
+            tooltip.click(this.removeTooltip);
 
             this.initTooltip(tooltip, target);
         }
@@ -11584,48 +11630,50 @@ var Tooltip = function () {
         key: "initTooltip",
         value: function initTooltip(tooltip, target) {
             if ((0, _jquery2.default)(window).width() < tooltip.outerWidth() * 1.5) {
-                tooltip.css("max-width", (0, _jquery2.default)(window).width() / 2);
+                tooltip.css("max-width", (0, _jquery2.default)(window).width() / 1.5);
             } else {
-                tooltip.css("max-width", 340);
+                tooltip.css("max-width", 500);
             }
 
-            var pos_left = target.offset().left + target.outerWidth() / 2 - tooltip.outerWidth() / 2;
+            var posLeft = target.offset().left + target.outerWidth() / 2 - tooltip.outerWidth() / 2;
 
-            var pos_top = target.offset().top - tooltip.outerHeight() - 20;
+            var posTop = target.offset().top - tooltip.outerHeight() - 20;
 
-            if (pos_left < 0) {
-                pos_left = target.offset().left + target.outerWidth() / 2 - 20;
+            if (posLeft < 0) {
+                posLeft = target.offset().left + target.outerWidth() / 2 - 20;
                 tooltip.addClass("left");
             } else {
                 tooltip.removeClass("left");
             }
 
-            if (pos_left + tooltip.outerWidth() > (0, _jquery2.default)(window).width()) {
-                pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
+            if (posLeft + tooltip.outerWidth() > (0, _jquery2.default)(window).width()) {
+                posLeft = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
 
                 tooltip.addClass("right");
             } else {
                 tooltip.removeClass("right");
             }
 
-            if (pos_top < 0) {
-                pos_top = target.offset().top + target.outerHeight();
+            if (posTop < 0) {
+                posTop = target.offset().top + target.outerHeight();
                 tooltip.addClass("top");
             } else {
                 tooltip.removeClass("top");
             }
 
-            tooltip.css({ left: pos_left, top: pos_top }).animate({ top: "+=10", opacity: 1 }, 50);
+            tooltip.css({ left: posLeft, top: posTop }).animate({ top: "+=10", opacity: 1 }, 50);
         }
     }, {
         key: "removeTooltip",
         value: function removeTooltip() {
             var target = (0, _jquery2.default)(this);
+
             var tooltipId = target.attr("data-matching-tooltip");
-            var tooltip = (0, _jquery2.default)(".tooltip__content[data-matching-tooltip='" + tooltipId + "'");
+
+            var tooltip = (0, _jquery2.default)(".tooltip__content[data-matching-tooltip='" + tooltipId + "']");
             var tip = tooltip.html();
 
-            tooltip.animate({ top: "-=10", opacity: 0 }, 50, function () {
+            tooltip.animate({ top: "-=10", opacity: 0 }, 350, function () {
                 (0, _jquery2.default)(this).remove();
             });
 
@@ -11681,7 +11729,7 @@ var ZoomHover = function () {
     }, {
         key: "overflowVisible",
         value: function overflowVisible() {
-            (0, _jquery2.default)(this).closest(".wrapper").addClass("wrapper--overflow-visible");
+            (0, _jquery2.default)(this).closest(".wrapper").addClass("wrapper--overflow-hidden-until-medium");
         }
     }, {
         key: "overflowHidden",
@@ -11694,7 +11742,7 @@ var ZoomHover = function () {
                 // If the element is currently hovered then we don't want to remove the visible 
                 // overflow
                 if ((0, _jquery2.default)(".zoom-hover__overlay:hover").length === 0) {
-                    (0, _jquery2.default)(".wrapper--overflow-visible").removeClass("wrapper--overflow-visible");
+                    (0, _jquery2.default)(".wrapper--overflow-visible").removeClass("wrapper--overflow-hidden-until-medium");
                 }
 
                 // Remove the CSS transition listener - because if you don't then the next time
@@ -11711,6 +11759,63 @@ exports.default = ZoomHover;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+    function MobileMenu() {
+        _classCallCheck(this, MobileMenu);
+
+        this.siteHeader = (0, _jquery2.default)('.site-header');
+        this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+        this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+        this.events();
+    }
+
+    _createClass(MobileMenu, [{
+        key: 'events',
+        value: function events() {
+            this.menuIcon.click(this.toggleTheMenu.bind(this));
+        }
+    }, {
+        key: 'closeMenu',
+        value: function closeMenu() {
+            this.menuContent.removeClass('site-header__menu-content--is-visible');
+            this.siteHeader.removeClass('site-header--is-expanded');
+            this.menuIcon.removeClass('site-header__menu-icon--close-x');
+        }
+    }, {
+        key: 'toggleTheMenu',
+        value: function toggleTheMenu() {
+            this.menuContent.toggleClass('site-header__menu-content--is-visible');
+            this.siteHeader.toggleClass('site-header--is-expanded');
+            this.menuIcon.toggleClass('site-header__menu-icon--close-x');
+        }
+    }]);
+
+    return MobileMenu;
+}();
+
+exports.default = MobileMenu;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12058,7 +12163,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

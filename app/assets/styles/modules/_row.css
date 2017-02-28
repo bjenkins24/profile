@@ -6,6 +6,10 @@
         margin-right: -65px;
     }
 
+    &--no-gutters-until-xsmall {
+        margin-right: 0
+    }
+
     &--gutters-large {
         margin-right: -90px;
     }
@@ -18,11 +22,84 @@
         padding-right: 90px;
     }
 
+    &--no-gutters-until-xsmall {
+        padding-right: 0
+    }
+
     &--b-margin {
         margin-bottom: 2rem;
     }
 
+    &--b-margin-until-medium {
+        margin-bottom: 2rem;
+    }
+
+    &__no-margin-until-medium {
+        margin-bottom: 0;
+    }
+
+    @mixin atXSmall {
+
+        &__xsmall-6 {
+            width: 50%;
+            float: left;
+
+            &--opposite {
+                width: 50%;
+                float: right;
+            }
+        }
+
+        &--no-gutters-until-xsmall {
+            margin-right: -65px;
+        }
+
+        &--no-gutters-until-xsmall > div {
+            padding-right: 65px;
+        }
+
+
+    }
+
+    @mixin atSmall {
+
+        &__small-4 {
+            float: left;
+            width: 33.33%
+        }
+
+        &__small-5 {
+            float: left;
+            width: 41.66%;
+
+            &--opposite {
+                float: right;
+                width: 41.66%;
+            }
+        }
+
+        &__small-6 {
+            float: left;
+            width: 50%
+        }
+
+        &__small-7 {
+            float: left;
+            width: 58.33%;
+
+            &--opposite {
+                float: right;
+                width: 58.33%;
+            }
+        }
+
+    }
+
     @mixin atMedium {
+        &__no-margin-until-medium {
+            margin-bottom: 2rem;
+        }
+
         &__b-margin-until-medium {
             margin-bottom: 0;
         }
@@ -40,6 +117,12 @@
         &__medium-5 {
             float: left;
             width: 41.66%;
+
+            &--opposite {
+                width: 41.66%;
+                float: right;
+            }
+
         }
 
         &__medium-6 {
@@ -50,7 +133,13 @@
         &__medium-7 {
             float: left;
             width: 58.33%;
+
+            &--opposite {
+                width: 58.33%;
+                float: right;
+            }
         }
+
 
         &__medium-8 {
             float: left;

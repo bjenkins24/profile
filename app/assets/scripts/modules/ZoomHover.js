@@ -17,7 +17,7 @@ class ZoomHover {
     }
 
     overflowVisible() {
-        $(this).closest( ".wrapper" ).addClass( "wrapper--overflow-visible" );
+        $(this).closest( ".wrapper" ).addClass( "wrapper--overflow-hidden-until-medium" );
     }
 
     overflowHidden() {
@@ -30,7 +30,7 @@ class ZoomHover {
                 // If the element is currently hovered then we don't want to remove the visible 
                 // overflow
                 if( $( ".zoom-hover__overlay:hover" ).length === 0 ) {
-                    $( ".wrapper--overflow-visible" ).removeClass( "wrapper--overflow-visible");
+                    $( ".wrapper--overflow-visible" ).removeClass( "wrapper--overflow-hidden-until-medium");
                 }
 
                 // Remove the CSS transition listener - because if you don't then the next time

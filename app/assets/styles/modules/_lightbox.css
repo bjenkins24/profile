@@ -18,7 +18,19 @@
             visibility: hidden;
             position: absolute;
             overflow: hidden;
-            width: 87%;
+            width: 80%;
+
+            @mixin atXSmall {
+                width: 82%
+            }
+
+            @mixin atSmall {
+                width: 84%;
+            }
+
+            @mixin atMedium {
+                width: 87%;
+            }
 
             &__nav {
                 list-style: none;
@@ -34,7 +46,13 @@
                 overflow: hidden;
                 font-size: .9rem;
                 border-radius: 6px;
+                display: none;
 
+                @mixin atMedium {
+                    display: block;
+                    width: 87%;
+                }
+                
                 li {
                     float: left;
                     padding: 1%;

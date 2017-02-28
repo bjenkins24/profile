@@ -18,6 +18,13 @@
     &__dates {
         font-weight: 300;
         font-size: 1.1rem;
+        display: block;
+        margin-bottom: 2rem;
+
+        @mixin atMedium {
+            display: inline;
+            margin-bottom: 0;
+        }
     }
 
     &__description-title {
@@ -28,12 +35,24 @@
     }
 
     &__description {
-        font-size: 1.2rem;
+        font-size: 1rem;
+
+        @mixin atSmall {
+            font-size: 1.2rem;
+        }
 
         &--no-margin {
             margin: 0;
         }
 
+    }
+
+    &__separator {
+
+        @mixin atMedium {
+            display: none;
+        }
+        
     }
 
 

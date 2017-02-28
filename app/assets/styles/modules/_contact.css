@@ -3,8 +3,27 @@
     position: relative;
 
     &__content {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
+        @mixin atXSmall {
+            font-size: 1.2rem;
+        }
+        @mixin atSmall {
+           font-size: 1.3rem; 
+        }
+        @mixin atMedium {
+           font-size: 1.5rem; 
+        }
+
+        &__item {
+            margin-bottom: 1rem;
+
+            &__icon {
+                width: 25px;
+                text-align: center;
+            }
+        }
     }
+
 
     &__btn {
         text-align: center;
