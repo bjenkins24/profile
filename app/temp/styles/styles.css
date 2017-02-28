@@ -2808,6 +2808,15 @@ li.lightbox__overlay__container__nav--active {
   display: table;
 }
 
+@media (min-width: 1200px) {
+
+  .site-header__menu-content {
+    display: block;
+    padding: 0;
+    float: right;
+  }
+}
+
 .site-header__menu-content--is-visible {
   display: block;
 }
@@ -2818,8 +2827,16 @@ li.lightbox__overlay__container__nav--active {
   text-align: center;
 }
 
+@media (min-width: 1200px) {
+
+  .site-header__menu-content li {
+    width: auto;
+  }
+}
+
 .site-header__menu-content li a {
-  padding: 1rem;
+  color: #f6f6f4;
+  padding: 1.2rem;
   display: block;
 }
 

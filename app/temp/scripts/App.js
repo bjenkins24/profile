@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11328,6 +11328,10 @@ var _noframework = __webpack_require__(1);
 
 var _noframework2 = _interopRequireDefault(_noframework);
 
+var _inview = __webpack_require__(9);
+
+var _inview2 = _interopRequireDefault(_inview);
+
 var _jquerySmoothScroll = __webpack_require__(8);
 
 var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
@@ -11350,7 +11354,7 @@ var Navigation = function () {
         this.headerLinks = (0, _jquery2.default)(".site-header__menu-content a");
         this.downArrow = (0, _jquery2.default)(".large-hero__arrow-box");
 
-        this.profileSection.before("<div class='site-header__placeholder'></div>");
+        this.siteHeader.after("<div class='site-header__placeholder'></div>");
         this.navPlaceholder = (0, _jquery2.default)(".site-header__placeholder");
         this.init();
     }
@@ -11362,9 +11366,12 @@ var Navigation = function () {
             this.events();
 
             this.addSmoothScrolling();
-            this.makeHeaderSticky();
 
-            this.addHeaderColor();
+            this.headerStickyOnLoad();
+
+            this.headerStickyWaypoint();
+
+            this.addHeaderColorWaypoint();
             this.removeHeaderColor();
 
             this.createPageSectionWaypoints();
@@ -11390,62 +11397,63 @@ var Navigation = function () {
     }, {
         key: 'makeHeaderSticky',
         value: function makeHeaderSticky() {
+            this.siteHeader.addClass('site-header--fixed');
+            this.navPlaceholder.addClass("site-header__placeholder--is-visible");
+        }
+    }, {
+        key: 'headerStickyOnLoad',
+        value: function headerStickyOnLoad() {
+            var scrollPosition = (0, _jquery2.default)(window).scrollTop();
+            var downArrowPosition = this.downArrow.offset().top;
+            if (scrollPosition > downArrowPosition) {
+                this.addHeaderColor();
+                this.makeHeaderSticky();
+            }
+        }
+    }, {
+        key: 'headerStickyWaypoint',
+        value: function headerStickyWaypoint() {
             var that = this;
-            var removeStickyCounter = 0;
-            new Waypoint({
-                element: that.siteHeader[0],
-                handler: function handler(direction) {
+            new Waypoint.Inview({
+                element: that.downArrow[0],
+                exited: function exited(direction) {
                     if (direction == 'down') {
-                        that.siteHeader.addClass('site-header--fixed');
-                        that.navPlaceholder.addClass("site-header__placeholder--is-visible");
-
-                        if (removeStickyCounter === 0) {
-                            that.removeSticky();
-                            removeStickyCounter = removeStickyCounter + 1;
-                        }
+                        that.makeHeaderSticky();
+                    }
+                },
+                enter: function enter(direction) {
+                    if (direction == 'up') {
+                        that.removeSticky();
                     }
                 }
             });
         }
-
-        /** This happens at the bottom of the nav placeholder arrow. It can't be attached
-        * to the site header because the site header is fixed at this point
-        */
-
     }, {
         key: 'removeSticky',
         value: function removeSticky() {
-            var that = this;
-            new Waypoint({
-                element: that.navPlaceholder[0],
-                handler: function handler(direction) {
-                    if (direction == 'up') {
-                        that.mobileMenu.closeMenu();
-                        that.siteHeader.removeClass('site-header--fixed');
-                        that.navPlaceholder.removeClass("site-header__placeholder--is-visible");
-                    }
-                }
-            });
+            this.mobileMenu.closeMenu();
+            this.siteHeader.removeClass('site-header--fixed');
+            this.navPlaceholder.removeClass("site-header__placeholder--is-visible");
         }
     }, {
         key: 'addHeaderColor',
         value: function addHeaderColor() {
+            this.siteHeader.addClass('site-header--gray');
+        }
+    }, {
+        key: 'addHeaderColorWaypoint',
+        value: function addHeaderColorWaypoint() {
             var that = this;
             new Waypoint({
                 element: that.downArrow[0],
                 handler: function handler(direction) {
                     if (direction == 'down') {
-                        that.siteHeader.addClass('site-header--gray');
+                        that.addHeaderColor();
                     }
                 },
                 offset: "13%"
             });
         }
-
-        /** This happens at the bottom of the nav placeholder. It can't be attached
-        * to the site header because the site header is fixed at this point
-        */
-
     }, {
         key: 'removeHeaderColor',
         value: function removeHeaderColor() {
@@ -12164,6 +12172,131 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+/*!
+Waypoints Inview Shortcut - 4.0.1
+Copyright © 2011-2016 Caleb Troughton
+Licensed under the MIT license.
+https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
+*/
+(function() {
+  'use strict'
+
+  function noop() {}
+
+  var Waypoint = window.Waypoint
+
+  /* http://imakewebthings.com/waypoints/shortcuts/inview */
+  function Inview(options) {
+    this.options = Waypoint.Adapter.extend({}, Inview.defaults, options)
+    this.axis = this.options.horizontal ? 'horizontal' : 'vertical'
+    this.waypoints = []
+    this.element = this.options.element
+    this.createWaypoints()
+  }
+
+  /* Private */
+  Inview.prototype.createWaypoints = function() {
+    var configs = {
+      vertical: [{
+        down: 'enter',
+        up: 'exited',
+        offset: '100%'
+      }, {
+        down: 'entered',
+        up: 'exit',
+        offset: 'bottom-in-view'
+      }, {
+        down: 'exit',
+        up: 'entered',
+        offset: 0
+      }, {
+        down: 'exited',
+        up: 'enter',
+        offset: function() {
+          return -this.adapter.outerHeight()
+        }
+      }],
+      horizontal: [{
+        right: 'enter',
+        left: 'exited',
+        offset: '100%'
+      }, {
+        right: 'entered',
+        left: 'exit',
+        offset: 'right-in-view'
+      }, {
+        right: 'exit',
+        left: 'entered',
+        offset: 0
+      }, {
+        right: 'exited',
+        left: 'enter',
+        offset: function() {
+          return -this.adapter.outerWidth()
+        }
+      }]
+    }
+
+    for (var i = 0, end = configs[this.axis].length; i < end; i++) {
+      var config = configs[this.axis][i]
+      this.createWaypoint(config)
+    }
+  }
+
+  /* Private */
+  Inview.prototype.createWaypoint = function(config) {
+    var self = this
+    this.waypoints.push(new Waypoint({
+      context: this.options.context,
+      element: this.options.element,
+      enabled: this.options.enabled,
+      handler: (function(config) {
+        return function(direction) {
+          self.options[config[direction]].call(self, direction)
+        }
+      }(config)),
+      offset: config.offset,
+      horizontal: this.options.horizontal
+    }))
+  }
+
+  /* Public */
+  Inview.prototype.destroy = function() {
+    for (var i = 0, end = this.waypoints.length; i < end; i++) {
+      this.waypoints[i].destroy()
+    }
+    this.waypoints = []
+  }
+
+  Inview.prototype.disable = function() {
+    for (var i = 0, end = this.waypoints.length; i < end; i++) {
+      this.waypoints[i].disable()
+    }
+  }
+
+  Inview.prototype.enable = function() {
+    for (var i = 0, end = this.waypoints.length; i < end; i++) {
+      this.waypoints[i].enable()
+    }
+  }
+
+  Inview.defaults = {
+    context: window,
+    enabled: true,
+    enter: noop,
+    entered: noop,
+    exit: noop,
+    exited: noop
+  }
+
+  Waypoint.Inview = Inview
+}())
+;
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

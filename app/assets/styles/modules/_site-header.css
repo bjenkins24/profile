@@ -45,6 +45,12 @@
         margin: 0;
         display: none;
 
+        @mixin atMedium {
+            display: block;
+            padding: 0;
+            float: right;
+        }
+
         &--is-visible {
             display: block;
         }
@@ -54,8 +60,13 @@
             width: 50%;
             text-align: center;
 
+            @mixin atMedium {
+                width: auto;
+            }
+
             & a {
-                padding: 1rem;
+                color: $white;
+                padding: 1.2rem;
                 display: block;
 
                 &:hover {
