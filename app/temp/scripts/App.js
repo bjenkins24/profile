@@ -11077,48 +11077,68 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * Lightbox for showing popup with navigation
+ */
 var Lightbox = function () {
+
+    /**
+     * Lightbox constructor
+     */
     function Lightbox() {
         _classCallCheck(this, Lightbox);
 
-        this.clickedElement = (0, _jquery2.default)(".lightbox");
+        this.clickedElement = (0, _jquery2.default)('.lightbox');
 
-        this.overlayClass = "lightbox__overlay";
-        this.leftArrowClass = this.overlayClass + "__left-arrow";
-        this.rightArrowClass = this.overlayClass + "__right-arrow";
-        this.overlay = (0, _jquery2.default)("." + this.overlayClass);
-        this.container = (0, _jquery2.default)("." + this.overlayClass + "__container");
+        this.overlayClass = 'lightbox__overlay';
+        this.leftArrowClass = this.overlayClass + '__left-arrow';
+        this.rightArrowClass = this.overlayClass + '__right-arrow';
+        this.overlay = (0, _jquery2.default)('.' + this.overlayClass);
+        this.container = (0, _jquery2.default)('.' + this.overlayClass + '__container');
 
         // Html variables
-        this.closeButtonHtml = "<i class='fa fa-times " + this.overlayClass + "__close'></i>";
-        this.leftArrowHtml = "<div class='" + this.leftArrowClass + "'><i class='fa fa-angle-left'></i></div>";
-        this.rightArrowHtml = "<div class='" + this.rightArrowClass + "'><i class='fa fa-angle-right'></i></div>";
-        this.navHtml = "<ul class='" + this.overlayClass + "__container__nav'></ul>";
+        this.closeButtonHtml = '<i class="fa fa-times ' + this.overlayClass + '__close"></i>';
+
+        this.leftArrowHtml = '<div class="' + this.leftArrowClass + '">\n                <i class="fa fa-angle-left"></i>\n            </div>';
+
+        this.rightArrowHtml = '<div class="' + this.rightArrowClass + '">\n                <i class="fa fa-angle-right"></i>\n            </div>';
+
+        this.navHtml = '<ul class="' + this.overlayClass + '__container__nav"></ul>';
 
         this.events();
     }
 
+    /**
+     * DOM events
+     */
+
+
     _createClass(Lightbox, [{
-        key: "events",
+        key: 'events',
         value: function events() {
             this.clickedElement.click(this.open.bind(this));
             this.overlay.click(this.close.bind(this));
             (0, _jquery2.default)(window).resize(this.resizeDescription.bind(this));
 
-            // Don't allow the lightbox to close on a click inside the container element
-            this.container.click(this.stopPropagation);
+            // If anything in the container is clicked it will NOT close
+            this.container.click(function (e) {
+                e.stopPropagation();
+            });
         }
 
-        // Make sure the description is the correct 
-        // Not too excited about this function - I feel like there's a better way to do this with
-        // just css, but going to leave it here for now in favor of time.
+        /**
+         * Make sure the description is the correct height
+         * Not too excited about this function - I feel like there's a better way
+         * to do this with just css, but going to leave it here for now in favor of
+         * time.
+         */
 
     }, {
-        key: "resizeDescription",
+        key: 'resizeDescription',
         value: function resizeDescription() {
-            var openContainer = (0, _jquery2.default)("." + this.overlayClass + "__container--open");
-            var image = openContainer.find("." + this.overlayClass + "__container__image");
-            var nav = (0, _jquery2.default)("." + this.overlayClass + "__container__nav");
+            var openContainer = (0, _jquery2.default)('.' + this.overlayClass + '__container--open');
+            var image = openContainer.find('.' + this.overlayClass + '__container__image');
+            var nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
 
             var navHeight = nav.height();
             var windowHeight = (0, _jquery2.default)(window).height();
@@ -11128,26 +11148,33 @@ var Lightbox = function () {
             var containerHeight = windowHeight - navHeight - descriptionTopBottomMargin;
             var descriptionHeight = containerHeight - imageHeight - descriptionTopBottomMargin;
 
-            openContainer.css("height", containerHeight + "px");
+            openContainer.css('height', containerHeight + 'px');
             // Move the container up to make room for the upper navigation
-            openContainer.css("margin-top", navHeight / 1.5 + "px");
-            openContainer.find("." + this.overlayClass + "__container__description").css("height", descriptionHeight + "px");
+            openContainer.css('margin-top', navHeight / 1.5 + 'px');
+            openContainer.find('.' + this.overlayClass + '__container__description').css('height', descriptionHeight + 'px');
         }
+
+        /**
+         * Retrieve the correct lightbox
+         * @param {Object} target
+         * @return {Object}
+         */
+
     }, {
-        key: "stopPropagation",
-        value: function stopPropagation(e) {
-            e.stopPropagation();
-        }
-    }, {
-        key: "getItem",
+        key: 'getItem',
         value: function getItem(target) {
-            var whichLightbox = (0, _jquery2.default)(target).data("lightbox");
-            return (0, _jquery2.default)("." + this.overlayClass + "[data-lightbox='" + whichLightbox + "']");
+            var whichLightbox = (0, _jquery2.default)(target).data('lightbox');
+            return (0, _jquery2.default)('.' + this.overlayClass + '[data-lightbox="' + whichLightbox + '"]');
         }
+
+        /**
+         * Add or remove the close button depending on if it exists or not
+         */
+
     }, {
-        key: "addRemoveCloseButton",
+        key: 'addRemoveCloseButton',
         value: function addRemoveCloseButton() {
-            var closeButton = (0, _jquery2.default)("." + this.overlayClass + "__close");
+            var closeButton = (0, _jquery2.default)('.' + this.overlayClass + '__close');
             if (closeButton.length === 0) {
                 this.overlay.append(this.closeButtonHtml);
             } else {
@@ -11156,47 +11183,63 @@ var Lightbox = function () {
                 });
             }
         }
+
+        /**
+         * Add or remove the top nav depending on if it exists or not
+         */
+
     }, {
-        key: "addRemoveNav",
+        key: 'addRemoveNav',
         value: function addRemoveNav() {
-            var nav = (0, _jquery2.default)("." + this.overlayClass + "__container__nav");
+            var nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
             if (nav.length === 0) {
+                (0, _jquery2.default)('.' + this.overlayClass + '--open').append(this.navHtml);
 
-                (0, _jquery2.default)("." + this.overlayClass + "--open").append(this.navHtml);
+                nav = (0, _jquery2.default)('.' + this.overlayClass + '__container__nav');
 
-                nav = (0, _jquery2.default)("." + this.overlayClass + "__container__nav");
-
-                (0, _jquery2.default)("." + this.overlayClass + "--open ." + this.overlayClass + "__container").each(function (index, value) {
-                    var name = (0, _jquery2.default)(value).data("lightbox-name");
-                    var number = (0, _jquery2.default)(value).data("lightbox-number");
-                    nav.append("<li data-lightbox-number='" + number + "'>" + name + "</li>");
+                (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').each(function (index, value) {
+                    var name = (0, _jquery2.default)(value).data('lightbox-name');
+                    var number = (0, _jquery2.default)(value).data('lightbox-number');
+                    nav.append('<li data-lightbox-number="' + number + '">' + name + '</li>');
                 });
 
-                nav.find("li").click(this.clickNav.bind(this));
+                nav.find('li').click(this.clickNav.bind(this));
             } else {
                 nav.fadeOut(400, function () {
                     nav.remove();
                 });
             }
         }
+
+        /**
+         * Event when clicking on a link in the nav
+         * @param {Object} e - event
+         */
+
     }, {
-        key: "clickNav",
+        key: 'clickNav',
         value: function clickNav(e) {
-            var number = (0, _jquery2.default)(e.currentTarget).data("lightbox-number");
+            var number = (0, _jquery2.default)(e.currentTarget).data('lightbox-number');
             this.switchImage(number);
 
             e.stopPropagation();
         }
+
+        /**
+         * Add or remove arrows depending on if they exist or not
+         */
+
     }, {
-        key: "addRemoveArrows",
+        key: 'addRemoveArrows',
         value: function addRemoveArrows() {
-            var leftArrow = (0, _jquery2.default)("." + this.overlayClass + "__left-arrow");
+            var leftArrow = (0, _jquery2.default)('.' + this.overlayClass + '__left-arrow');
             if (leftArrow.length === 0) {
                 this.overlay.append(this.leftArrowHtml);
-                leftArrow = (0, _jquery2.default)("." + this.overlayClass + "__left-arrow");
+                leftArrow = (0, _jquery2.default)('.' + this.overlayClass + '__left-arrow');
 
-                // Add click event for left arrow - this doesn't work on .on in events because 
-                // I have to stop propagation in order to not close lightbox
+                // Add click event for left arrow - this doesn't work on .on in
+                // events because I have to stop propagation in order to not close
+                // the light box
                 leftArrow.click(this.leftImage.bind(this));
             } else {
                 leftArrow.fadeOut(400, function () {
@@ -11204,13 +11247,14 @@ var Lightbox = function () {
                 });
             }
 
-            var rightArrow = (0, _jquery2.default)("." + this.overlayClass + "__right-arrow");
+            var rightArrow = (0, _jquery2.default)('.' + this.overlayClass + '__right-arrow');
             if (rightArrow.length === 0) {
                 this.overlay.append(this.rightArrowHtml);
-                rightArrow = (0, _jquery2.default)("." + this.overlayClass + "__right-arrow");
+                rightArrow = (0, _jquery2.default)('.' + this.overlayClass + '__right-arrow');
 
-                // Add click event for right arrow - this doesn't work on .on in events because 
-                // I have to stop propagation in order to not close lightbox
+                // Add click event for right arrow - this doesn't work on .on in
+                // events because I have to stop propagation in order to not close
+                // the light box
                 rightArrow.click(this.rightImage.bind(this));
             } else {
                 rightArrow.fadeOut(400, function () {
@@ -11218,35 +11262,58 @@ var Lightbox = function () {
                 });
             }
         }
+
+        /**
+         * Add or remove all elements in one method
+         */
+
     }, {
-        key: "addRemoveElements",
+        key: 'addRemoveElements',
         value: function addRemoveElements() {
             this.addRemoveCloseButton();
             this.addRemoveArrows();
             this.addRemoveNav();
         }
+
+        /**
+         * Open the lightbox
+         * @param {Object} e - event
+         */
+
     }, {
-        key: "open",
+        key: 'open',
         value: function open(e) {
             var item = this.getItem(e.currentTarget);
-            item.addClass(this.overlayClass + "--open");
+            item.addClass(this.overlayClass + '--open');
 
             this.addRemoveElements();
 
-            (0, _jquery2.default)("body").addClass("no-scroll");
+            (0, _jquery2.default)('body').addClass('no-scroll');
             this.switchImage(1);
         }
+
+        /**
+         * Close the images by removing the containter open class. This happens
+         * before any images are opened
+         */
+
     }, {
-        key: "closeAllImages",
+        key: 'closeAllImages',
         value: function closeAllImages() {
-            this.container.removeClass(this.overlayClass + "__container--open");
-            (0, _jquery2.default)("ul." + this.overlayClass + "__container__nav li").removeClass(this.overlayClass + "__container__nav--active");
+            this.container.removeClass(this.overlayClass + '__container--open');
+            (0, _jquery2.default)('ul.' + this.overlayClass + '__container__nav li').removeClass(this.overlayClass + '__container__nav--active');
         }
+
+        /**
+         * Go to the left image
+         * @param {Object} e - event
+         */
+
     }, {
-        key: "leftImage",
+        key: 'leftImage',
         value: function leftImage(e) {
-            var currentImage = (0, _jquery2.default)("." + this.overlayClass + "__container--open").data("lightbox-number");
-            var totalImages = (0, _jquery2.default)("." + this.overlayClass + "--open ." + this.overlayClass + "__container").length;
+            var currentImage = (0, _jquery2.default)('.' + this.overlayClass + '__container--open').data('lightbox-number');
+            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').length;
 
             var nextImage = void 0;
             if (currentImage === 1) {
@@ -11258,11 +11325,17 @@ var Lightbox = function () {
             this.switchImage(nextImage);
             e.stopPropagation();
         }
+
+        /**
+         * Go to the right image
+         * @param {Object} e - event
+         */
+
     }, {
-        key: "rightImage",
+        key: 'rightImage',
         value: function rightImage(e) {
-            var currentImage = (0, _jquery2.default)("." + this.overlayClass + "__container--open").data("lightbox-number");
-            var totalImages = (0, _jquery2.default)("." + this.overlayClass + "--open ." + this.overlayClass + "__container").length;
+            var currentImage = (0, _jquery2.default)('.' + this.overlayClass + '__container--open').data('lightbox-number');
+            var totalImages = (0, _jquery2.default)('.' + this.overlayClass + '--open .' + this.overlayClass + '__container').length;
 
             var nextImage = void 0;
             if (currentImage === totalImages) {
@@ -11274,30 +11347,50 @@ var Lightbox = function () {
             this.switchImage(nextImage);
             e.stopPropagation();
         }
+
+        /**
+         * Switch to an image given an image number
+         * @param {Number} number - the number of the image that is going to show
+         */
+
     }, {
-        key: "switchImage",
+        key: 'switchImage',
         value: function switchImage(number) {
             this.closeAllImages();
 
-            (0, _jquery2.default)("." + this.overlayClass + "__container[data-lightbox-number='" + number + "']").addClass(this.overlayClass + "__container--open");
+            var nextImage = (0, _jquery2.default)('.' + this.overlayClass + '__container\n              [data-lightbox-number="' + number + '"]');
+
+            nextImage.addClass(this.overlayClass + '__container--open');
 
             this.resizeDescription();
 
             this.switchNav(number);
         }
+
+        /**
+         * Activate the correct navigation
+         * @param {Number} number - the number of the navigation being selected
+         */
+
     }, {
-        key: "switchNav",
+        key: 'switchNav',
         value: function switchNav(number) {
-            (0, _jquery2.default)("." + this.overlayClass + "__container__nav li[data-lightbox-number='" + number + "']").addClass(this.overlayClass + "__container__nav--active");
+            (0, _jquery2.default)(this.overlayClass + '__container__nav\n          li[data-lightbox-number="' + number + '"]').addClass(this.overlayClass + '__container__nav--active');
         }
+
+        /**
+         * Close the lightbox
+         * @param {Object} e - event
+         */
+
     }, {
-        key: "close",
+        key: 'close',
         value: function close(e) {
             this.addRemoveElements();
 
-            (0, _jquery2.default)(e.currentTarget).closest("." + this.overlayClass).removeClass(this.overlayClass + "--open");
+            (0, _jquery2.default)(e.currentTarget).closest('.' + this.overlayClass).removeClass(this.overlayClass + '--open');
 
-            (0, _jquery2.default)("body").removeClass("no-scroll");
+            (0, _jquery2.default)('body').removeClass('no-scroll');
             this.closeAllImages();
         }
     }]);
@@ -11348,19 +11441,19 @@ var Navigation = function () {
     function Navigation() {
         _classCallCheck(this, Navigation);
 
-        this.siteHeader = (0, _jquery2.default)('.site-header');
-        this.profileSection = (0, _jquery2.default)('.profile');
-        this.pageSections = (0, _jquery2.default)('.page-section');
+        this.siteHeader = (0, _jquery2.default)(".site-header");
+        this.profileSection = (0, _jquery2.default)(".profile");
+        this.pageSections = (0, _jquery2.default)(".page-section");
         this.headerLinks = (0, _jquery2.default)(".site-header__menu-content a");
         this.downArrow = (0, _jquery2.default)(".large-hero__arrow-box");
 
-        this.siteHeader.after("<div class='site-header__placeholder'></div>");
+        this.siteHeader.after(" <div class='site-header__placeholder'></div>");
         this.navPlaceholder = (0, _jquery2.default)(".site-header__placeholder");
         this.init();
     }
 
     _createClass(Navigation, [{
-        key: 'init',
+        key: "init",
         value: function init() {
             this.mobileMenu = new _MobileMenu2.default();
             this.events();
@@ -11377,31 +11470,31 @@ var Navigation = function () {
             this.createPageSectionWaypoints();
         }
     }, {
-        key: 'events',
+        key: "events",
         value: function events() {
             this.downArrow.click(this.scrollToProfile.bind(this));
             this.headerLinks.click(this.mobileMenu.closeMenu.bind(this.mobileMenu));
         }
     }, {
-        key: 'scrollToProfile',
+        key: "scrollToProfile",
         value: function scrollToProfile() {
-            (0, _jquery2.default)('html, body').animate({
+            (0, _jquery2.default)("html, body").animate({
                 scrollTop: this.profileSection.offset().top
             }, 900);
         }
     }, {
-        key: 'addSmoothScrolling',
+        key: "addSmoothScrolling",
         value: function addSmoothScrolling() {
             this.headerLinks.smoothScroll({ offset: -56 });
         }
     }, {
-        key: 'makeHeaderSticky',
+        key: "makeHeaderSticky",
         value: function makeHeaderSticky() {
-            this.siteHeader.addClass('site-header--fixed');
+            this.siteHeader.addClass("site-header--fixed");
             this.navPlaceholder.addClass("site-header__placeholder--is-visible");
         }
     }, {
-        key: 'headerStickyOnLoad',
+        key: "headerStickyOnLoad",
         value: function headerStickyOnLoad() {
             var scrollPosition = (0, _jquery2.default)(window).scrollTop();
             var downArrowPosition = this.downArrow.offset().top;
@@ -11411,43 +11504,43 @@ var Navigation = function () {
             }
         }
     }, {
-        key: 'headerStickyWaypoint',
+        key: "headerStickyWaypoint",
         value: function headerStickyWaypoint() {
             var that = this;
             new Waypoint.Inview({
                 element: that.downArrow[0],
                 exited: function exited(direction) {
-                    if (direction == 'down') {
+                    if (direction == "down") {
                         that.makeHeaderSticky();
                     }
                 },
                 enter: function enter(direction) {
-                    if (direction == 'up') {
+                    if (direction == "up") {
                         that.removeSticky();
                     }
                 }
             });
         }
     }, {
-        key: 'removeSticky',
+        key: "removeSticky",
         value: function removeSticky() {
             this.mobileMenu.closeMenu();
-            this.siteHeader.removeClass('site-header--fixed');
+            this.siteHeader.removeClass("site-header--fixed");
             this.navPlaceholder.removeClass("site-header__placeholder--is-visible");
         }
     }, {
-        key: 'addHeaderColor',
+        key: "addHeaderColor",
         value: function addHeaderColor() {
-            this.siteHeader.addClass('site-header--gray');
+            this.siteHeader.addClass("site-header--gray");
         }
     }, {
-        key: 'addHeaderColorWaypoint',
+        key: "addHeaderColorWaypoint",
         value: function addHeaderColorWaypoint() {
             var that = this;
             new Waypoint({
                 element: that.downArrow[0],
                 handler: function handler(direction) {
-                    if (direction == 'down') {
+                    if (direction == "down") {
                         that.addHeaderColor();
                     }
                 },
@@ -11455,21 +11548,21 @@ var Navigation = function () {
             });
         }
     }, {
-        key: 'removeHeaderColor',
+        key: "removeHeaderColor",
         value: function removeHeaderColor() {
             var that = this;
             new Waypoint({
                 element: that.downArrow[0],
                 handler: function handler(direction) {
-                    if (direction == 'up') {
-                        that.siteHeader.removeClass('site-header--gray');
+                    if (direction == "up") {
+                        that.siteHeader.removeClass("site-header--gray");
                     }
                 },
                 offset: "13%"
             });
         }
     }, {
-        key: 'createPageSectionWaypoints',
+        key: "createPageSectionWaypoints",
         value: function createPageSectionWaypoints() {
             var that = this;
             this.pageSections.each(function () {
@@ -11477,10 +11570,10 @@ var Navigation = function () {
                 new Waypoint({
                     element: currentPageSection,
                     handler: function handler(direction) {
-                        if (direction == 'down') {
-                            var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-                            that.headerLinks.removeClass('is-current-link');
-                            (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
+                        if (direction == "down") {
+                            var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+                            that.headerLinks.removeClass("is-current-link");
+                            (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
                         }
                     },
                     offset: "18%"
@@ -11489,10 +11582,10 @@ var Navigation = function () {
                 new Waypoint({
                     element: currentPageSection,
                     handler: function handler(direction) {
-                        if (direction == 'up') {
-                            var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-                            that.headerLinks.removeClass('is-current-link');
-                            (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
+                        if (direction == "up") {
+                            var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+                            that.headerLinks.removeClass("is-current-link");
+                            (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
                         }
                     },
                     offset: "-40%"
@@ -11790,30 +11883,33 @@ var MobileMenu = function () {
     function MobileMenu() {
         _classCallCheck(this, MobileMenu);
 
-        this.siteHeader = (0, _jquery2.default)('.site-header');
-        this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
-        this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+        this.siteHeader = (0, _jquery2.default)(".site-header");
+        this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
+        this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
         this.events();
     }
 
     _createClass(MobileMenu, [{
-        key: 'events',
+        key: "events",
         value: function events() {
             this.menuIcon.click(this.toggleTheMenu.bind(this));
         }
+
+        /** Used in Navigation.js */
+
     }, {
-        key: 'closeMenu',
+        key: "closeMenu",
         value: function closeMenu() {
-            this.menuContent.removeClass('site-header__menu-content--is-visible');
-            this.siteHeader.removeClass('site-header--is-expanded');
-            this.menuIcon.removeClass('site-header__menu-icon--close-x');
+            this.menuContent.removeClass("site-header__menu-content--is-visible");
+            this.siteHeader.removeClass("site-header--is-expanded");
+            this.menuIcon.removeClass("site-header__menu-icon--close-x");
         }
     }, {
-        key: 'toggleTheMenu',
+        key: "toggleTheMenu",
         value: function toggleTheMenu() {
-            this.menuContent.toggleClass('site-header__menu-content--is-visible');
-            this.siteHeader.toggleClass('site-header--is-expanded');
-            this.menuIcon.toggleClass('site-header__menu-icon--close-x');
+            this.menuContent.toggleClass("site-header__menu-content--is-visible");
+            this.siteHeader.toggleClass("site-header--is-expanded");
+            this.menuIcon.toggleClass("site-header__menu-icon--close-x");
         }
     }]);
 

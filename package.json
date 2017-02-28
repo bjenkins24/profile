@@ -1,6 +1,28 @@
 {
   "name": "travel-site",
   "version": "1.0.0",
+  "eslintConfig": {
+    "env": {
+        "browser": true,
+        "jquery": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true
+        }
+    },
+    "extends": ["eslint:recommended", "google"],
+    "rules": {
+        "curly": 2,
+        "eqeqeq": 2,
+        "space-before-blocks": 2,
+        "spaced-comment": 2,
+        "space-in-parens": 2,
+        "keyword-spacing": 2
+    }
+  },
   "dependencies": {
     "jquery": "^3.1.1",
     "jquery-smooth-scroll": "^2.1.2",
@@ -16,6 +38,11 @@
     "browser-sync": "^2.18.7",
     "concurrent-transform": "^1.0.0",
     "del": "^2.2.2",
+    "eslint": "^3.16.1",
+    "eslint-config-google": "^0.7.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-changed": "^2.0.0",
     "gulp-cssnano": "^2.1.2",

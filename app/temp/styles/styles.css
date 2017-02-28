@@ -2762,16 +2762,16 @@ li.lightbox__overlay__container__nav--active {
     margin-top: 100vh;
 }
 
-/* Placeholder for when the navigation becomes fixed added with js */
+/* Placeholder for when the navigation becomes fixed - added with js */
 
 .site-header__placeholder {
   height: 3.5rem;
   display: none;
-  background: #f6f6f4;
 }
 
 .site-header__placeholder--is-visible {
   display: block;
+  background: #f6f6f4;
   margin-top: 100vh;
 }
 
@@ -2781,7 +2781,7 @@ li.lightbox__overlay__container__nav--active {
 
 .site-header--fixed {
   position: fixed;
-  z-index: 12;
+  z-index: 11;
   top: 0;
   margin-top: 0;
   width: 100%;
@@ -2791,21 +2791,11 @@ li.lightbox__overlay__container__nav--active {
   background-color: rgba(104,101,94, .8);
 }
 
-.site-header--gray a {
-  color: #f6f6f4;
-}
-
 .site-header__menu-content {
   padding: 3.5rem 0 0 0;
   list-style: none;
   margin: 0;
   display: none;
-}
-
-.site-header__menu-content::after {
-  content: "";
-  clear: both;
-  display: table;
 }
 
 @media (min-width: 1200px) {
@@ -2851,8 +2841,8 @@ li.lightbox__overlay__container__nav--active {
   position: absolute;
   top: 18px;
   right: 18px;
-  z-index: 10;
   cursor: pointer;
+  z-index: 10;
 }
 
 .site-header__menu-icon::before {
