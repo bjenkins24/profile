@@ -30,7 +30,7 @@
         width: 100%;
     }
 
-    &--gray {
+    &--active {
         background-color: rgba($gray, 0.8);
     }
 
@@ -64,7 +64,7 @@
                 padding: 1.2rem;
                 display: block;
 
-                &.is-current-link {
+                .site-header--active &.is-current-link {
                     color: $primary-color;
                 }
 

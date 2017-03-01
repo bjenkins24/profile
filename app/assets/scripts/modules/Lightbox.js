@@ -12,11 +12,10 @@ class Lightbox {
         this.clickedElement = $('.lightbox');
 
         this.overlayClass = 'lightbox__overlay';
-        this.overlay = $(`.${this.overlayClass}`);
         this.leftArrowClass = `${this.overlayClass}__left-arrow`;
         this.rightArrowClass = `${this.overlayClass}__right-arrow`;
         this.containerClass = `${this.overlayClass}__container`;
-        this.container = $(`.${this.containerClass}`);
+        this.itemClass = `${this.containerClass}__item`;
 
         // Html variables
         this.closeButtonHtml =
@@ -33,7 +32,7 @@ class Lightbox {
             </div>`;
 
         this.navHtml =
-            `<ul class="${this.overlayClass}__container__nav"></ul>`;
+            `<ul class="${this.containerClass}__nav"></ul>`;
 
         this.events();
     }
@@ -43,11 +42,10 @@ class Lightbox {
      */
     events() {
         this.clickedElement.click(this.open.bind(this));
-        this.overlay.click(this.close.bind(this));
-        $(window).resize(this.resizeDescription.bind(this));
+        $(`.${this.overlayClass}`).click(this.close.bind(this));
 
         // If anything in the container is clicked it will NOT close
-        this.container.click(
+        $(`.${this.containerClass}`).click(
             (e) => {
                 e.stopPropagation();
             }
@@ -55,33 +53,30 @@ class Lightbox {
     }
 
     /**
-     * Make sure the description is the correct height
-     * Not too excited about this function - I feel like there's a better way
-     * to do this with just css, but going to leave it here for now in favor of
-     * time.
+     * The body is still scrollable on mobile even with overflow: hidden on the
+     * body. It can't be scrollable so this prevents the body from scrolling on
+     * mobile touchmove event, and also adds the overflow: hidden
+     * @param {Boolean} status - if true then stop scroll - if false start
+     * it again
      */
-    resizeDescription() {
-        let openContainer = $(`.${this.containerClass}--open`);
-        let image = openContainer
-            .find(`.${this.containerClass}__image`);
-        let nav = $(`.${this.containerClass}__nav`);
+    stopBodyScrolling(status) {
+        if (status === true) {
+            $('body').addClass('no-scroll');
+            document.body
+                .addEventListener('touchmove', this.stopDefault, false);
+        } else {
+            $('body').removeClass('no-scroll');
+            document.body
+                .removeEventListener('touchmove', this.stopDefault, false);
+        }
+    }
 
-        let navHeight = nav.height();
-        let windowHeight = $(window).height();
-        let imageHeight = image.height();
-        let descriptionTopBottomMargin = 25;
-
-        let containerHeight = windowHeight-navHeight-descriptionTopBottomMargin;
-        let descriptionHeight =
-            containerHeight -
-            imageHeight -
-            descriptionTopBottomMargin;
-
-        openContainer.css('height', `${containerHeight}px`);
-        // Move the container up to make room for the upper navigation
-        openContainer.css('margin-top', `${navHeight/1.5}px`);
-        openContainer.find(`.${this.containerClass}__description`)
-            .css('height', `${descriptionHeight}px`);
+    /**
+     * Stop default behavior
+     * @param {Object} e - event
+     */
+    stopDefault(e) {
+        e.preventDefault();
     }
 
     /**
@@ -89,7 +84,7 @@ class Lightbox {
      * @param {Object} target
      * @return {Object}
      */
-    getItem(target) {
+    getLightbox(target) {
         let whichLightbox = $(target).data('lightbox');
         return $(`.${this.overlayClass}[data-lightbox="${whichLightbox}"]`);
     }
@@ -100,7 +95,7 @@ class Lightbox {
     addRemoveCloseButton() {
         let closeButton = $(`.${this.overlayClass}__close`);
         if (closeButton.length === 0) {
-            this.overlay.append(this.closeButtonHtml);
+            $(`.${this.overlayClass}`).append(this.closeButtonHtml);
         } else {
             closeButton.fadeOut(400, function() {
                 closeButton.remove();
@@ -114,11 +109,12 @@ class Lightbox {
     addRemoveNav() {
         let nav = $(`.${this.containerClass}__nav`);
         if (nav.length === 0) {
-            $(`.${this.overlayClass}--open`).append(this.navHtml);
+            $(`.${this.overlayClass}--open .${this.containerClass}`)
+                .prepend(this.navHtml);
 
             nav = $(`.${this.containerClass}__nav`);
 
-            $(`.${this.overlayClass}--open .${this.overlayClass}__container`)
+            $(`.${this.overlayClass}--open .${this.itemClass}`)
                 .each(function(index, value) {
                     let name = $(value).data('lightbox-name');
                     let number = $(value).data('lightbox-number');
@@ -153,13 +149,15 @@ class Lightbox {
     addRemoveArrows() {
         let leftArrow = $(`.${this.overlayClass}__left-arrow`);
         if (leftArrow.length === 0) {
-            this.overlay.append(this.leftArrowHtml);
+            $(`.${this.overlayClass}`).append(this.leftArrowHtml);
             leftArrow = $(`.${this.overlayClass}__left-arrow`);
 
             // Add click event for left arrow - this doesn't work on .on in
             // events because I have to stop propagation in order to not close
             // the light box
-            leftArrow.click(this.leftImage.bind(this));
+            leftArrow.click((e) => {
+                this.arrowSwitch(e, 'left');
+            });
         } else {
             leftArrow.fadeOut(400, function() {
                 leftArrow.remove();
@@ -168,13 +166,15 @@ class Lightbox {
 
         let rightArrow = $(`.${this.overlayClass}__right-arrow`);
         if (rightArrow.length === 0) {
-            this.overlay.append(this.rightArrowHtml);
+            $(`.${this.overlayClass}`).append(this.rightArrowHtml);
             rightArrow = $(`.${this.overlayClass}__right-arrow`);
 
             // Add click event for right arrow - this doesn't work on .on in
             // events because I have to stop propagation in order to not close
             // the light box
-            rightArrow.click(this.rightImage.bind(this));
+            rightArrow.click((e) => {
+                this.arrowSwitch(e, 'right');
+            });
         } else {
             rightArrow.fadeOut(400, function() {
                 rightArrow.remove();
@@ -196,12 +196,12 @@ class Lightbox {
      * @param {Object} e - event
      */
     open(e) {
-        let item = this.getItem(e.currentTarget);
+        let item = this.getLightbox(e.currentTarget);
         item.addClass(`${this.overlayClass}--open`);
 
         this.addRemoveElements();
 
-        $('body').addClass('no-scroll');
+        this.stopBodyScrolling(true);
         this.switchImage(1);
     }
 
@@ -210,49 +210,38 @@ class Lightbox {
      * before any images are opened
      */
     closeAllImages() {
-        this.container.removeClass(`${this.containerClass}--open`);
+        $(`.${this.itemClass}`).removeClass(`${this.itemClass}--open`);
         $(`ul.${this.containerClass}__nav li`)
             .removeClass(`${this.containerClass}__nav--active`);
     }
 
+
     /**
-     * Go to the left image
+     * Switch images with arrow click
      * @param {Object} e - event
+     * @param {string} direction - left or right depending on which arrow
      */
-    leftImage(e) {
-        let currentImage = $(`.${this.containerClass}--open`)
+    arrowSwitch(e, direction) {
+        let currentImage = $(`.${this.itemClass}--open`)
             .data('lightbox-number');
         let totalImages =
-            $(`.${this.overlayClass}--open .${this.containerClass}`)
+            $(`.${this.overlayClass}--open .${this.itemClass}`)
             .length;
 
         let nextImage;
-        if (currentImage === 1) {
-            nextImage = totalImages;
-        } else {
-            nextImage = currentImage-1;
+        if (direction === 'left') {
+            if (currentImage === 1) {
+                nextImage = totalImages;
+            } else {
+                nextImage = currentImage-1;
+            }
         }
-
-        this.switchImage(nextImage);
-        e.stopPropagation();
-    }
-
-    /**
-     * Go to the right image
-     * @param {Object} e - event
-     */
-    rightImage(e) {
-        let currentImage = $(`.${this.containerClass}--open`)
-            .data('lightbox-number');
-        let totalImages =
-            $(`.${this.overlayClass}--open .${this.containerClass}`)
-            .length;
-
-        let nextImage;
-        if (currentImage === totalImages) {
-            nextImage = 1;
-        } else {
-            nextImage = currentImage+1;
+        if (direction === 'right') {
+            if (currentImage === totalImages) {
+                nextImage = 1;
+            } else {
+                nextImage = currentImage+1;
+            }
         }
 
         this.switchImage(nextImage);
@@ -267,11 +256,9 @@ class Lightbox {
         this.closeAllImages();
 
         let nextImage =
-            $(`.${this.containerClass}[data-lightbox-number="${number}"]`);
+            $(`.${this.itemClass}[data-lightbox-number="${number}"]`);
 
-        nextImage.addClass(`${this.containerClass}--open`);
-
-        this.resizeDescription();
+        nextImage.addClass(`${this.itemClass}--open`);
 
         this.switchNav(number);
     }
@@ -290,14 +277,13 @@ class Lightbox {
      * @param {Object} e - event
      */
     close(e) {
-        this.addRemoveElements();
-
         $(e.currentTarget)
             .closest(`.${this.overlayClass}`)
             .removeClass(`${this.overlayClass}--open`);
 
-        $('body').removeClass('no-scroll');
-        this.closeAllImages();
+        this.addRemoveElements();
+
+        this.stopBodyScrolling(false);
     }
 }
 

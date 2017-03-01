@@ -494,6 +494,158 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="arrowSwitch"><span class="type-signature"></span>arrowSwitch(e, direction)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Switch images with arrow click</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>e</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>event</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>left or right depending on which arrow</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="clickNav"><span class="type-signature"></span>clickNav(e)</h4>
     
     
@@ -907,7 +1059,7 @@ before any images are opened</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="getItem"><span class="type-signature"></span>getItem(target)</h4>
+    <h4 class="name" id="getLightbox"><span class="type-signature"></span>getLightbox(target)</h4>
     
     
 </dt>
@@ -1055,134 +1207,6 @@ before any images are opened</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="leftImage"><span class="type-signature"></span>leftImage(e)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Go to the left image</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>e</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>event</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
     <h4 class="name" id="open"><span class="type-signature"></span>open(e)</h4>
     
     
@@ -1311,7 +1335,7 @@ before any images are opened</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="resizeDescription"><span class="type-signature"></span>resizeDescription()</h4>
+    <h4 class="name" id="stopBodyScrolling"><span class="type-signature"></span>stopBodyScrolling(status)</h4>
     
     
 </dt>
@@ -1319,10 +1343,9 @@ before any images are opened</p>
 
     
     <div class="description">
-        <p>Make sure the description is the correct height
-Not too excited about this function - I feel like there's a better way
-to do this with just css, but going to leave it here for now in favor of
-time.</p>
+        <p>The body is still scrollable on mobile even with overflow: hidden on the
+body. It can't be scrollable so this prevents the body from scrolling on
+mobile touchmove event, and also adds the overflow: hidden</p>
     </div>
     
 
@@ -1331,6 +1354,57 @@ time.</p>
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>if true then stop scroll - if false start
+it again</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -1392,7 +1466,7 @@ time.</p>
             
 <hr>
 <dt>
-    <h4 class="name" id="rightImage"><span class="type-signature"></span>rightImage(e)</h4>
+    <h4 class="name" id="stopDefault"><span class="type-signature"></span>stopDefault(e)</h4>
     
     
 </dt>
@@ -1400,7 +1474,7 @@ time.</p>
 
     
     <div class="description">
-        <p>Go to the right image</p>
+        <p>Stop default behavior</p>
     </div>
     
 
@@ -1822,7 +1896,7 @@ time.</p>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on February 28th 2017, 3:56:09 pm
+		on March 1st 2017, 3:41:44 pm
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

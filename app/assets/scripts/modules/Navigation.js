@@ -67,8 +67,18 @@ class Navigation {
      * The -56 offset is to give padding for the sticky navigation
      */
     addSmoothScrolling() {
+        let that = this;
         let headerHeight = -56;
-        this.headerLinks.smoothScroll({offset: headerHeight});
+        this.headerLinks.smoothScroll({
+            offset: headerHeight,
+            afterScroll: function() {
+                // For the profile remove the sticky automatically
+                // helps on mobile
+                if ($(this).attr('id') === 'profile-link') {
+                    that.removeSticky();
+                }
+            },
+        });
     }
 
     /**
@@ -78,6 +88,7 @@ class Navigation {
     makeHeaderSticky() {
         this.siteHeader.addClass('site-header--fixed');
         this.navPlaceholder.addClass('site-header__placeholder--is-visible');
+        this.siteHeader.removeAttr('style');
     }
 
     /**
@@ -121,13 +132,16 @@ class Navigation {
         this.mobileMenu.closeMenu();
         this.siteHeader.removeClass('site-header--fixed');
         this.navPlaceholder.removeClass('site-header__placeholder--is-visible');
+
+        // let viewportHeight = $(window).height();
+        // this.siteHeader.css('margin-top', `${viewportHeight}px`);
     }
 
     /**
      * Add the color class to the header
      */
     addHeaderColor() {
-        this.siteHeader.addClass('site-header--gray');
+        this.siteHeader.addClass('site-header--active');
     }
 
     /**
@@ -158,7 +172,7 @@ class Navigation {
             element: that.downArrow[0],
             handler: function(direction) {
                 if (direction === 'up') {
-                    that.siteHeader.removeClass('site-header--gray');
+                    that.siteHeader.removeClass('site-header--active');
                 }
             },
             offset: '13%',
@@ -198,7 +212,7 @@ class Navigation {
                         $(matchingHeaderLink).addClass('is-current-link');
                     }
                 },
-                offset: '-40%',
+                offset: '-50%',
             });
         });
     }
