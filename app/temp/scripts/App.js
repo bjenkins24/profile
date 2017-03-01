@@ -12060,7 +12060,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var MobileMenu = function () {
 
     /**
-     * Constructor for mobile menU
+     * Constructor for mobile menu
      */
     function MobileMenu() {
         _classCallCheck(this, MobileMenu);

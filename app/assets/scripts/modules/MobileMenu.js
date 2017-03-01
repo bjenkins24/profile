@@ -6,7 +6,7 @@ import $ from 'jquery';
 class MobileMenu {
 
     /**
-     * Constructor for mobile menU
+     * Constructor for mobile menu
      */
     constructor() {
         this.siteHeader = $('.site-header');
