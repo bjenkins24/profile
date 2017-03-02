@@ -1,14 +1,14 @@
 .icon {
-    background: url('$img-dir/icons/sprite.png');
     display: block;
 
     &--star {
-        background-size: 75px;
+        background: url('$img-dir/icons/stars.png');
+        background-size: 53px;
         width: 18px;
         height: 18px;
 
         @mixin atXSmall {
-            background-size: 85px;
+            background-size: 62px;
             width: 20px;
             height: 20px;
         }

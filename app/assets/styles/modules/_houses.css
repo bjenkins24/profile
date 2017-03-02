@@ -37,9 +37,28 @@
     display: none;
 
     &__full {
+        background: url('$img-dir-xxsmall/houses-full.png') bottom no-repeat;
+        background-size: 100%;
+        width: 100%;
+        height: 100vh;
         display: block;
         position: fixed;
         bottom: 0;
+
+        @mixin atXSmall {
+            background: url('$img-dir-xsmall/houses-full.png') bottom no-repeat;
+            background-size: 100%;
+        }
+
+        @mixin atSmall {
+            background: url('$img-dir-small/houses-full.png') bottom no-repeat;
+            background-size: 100%;
+        }
+
+        @mixin atMedium {
+            display: none;
+            background: none;
+        }
     }
 
     @mixin atHouseSmall {

@@ -22,7 +22,6 @@
 				<h2 class="large-hero__text-content__subtitle">Interactive Resume</h2>
 			</div>
 			<div class="houses__full">
-				<img src="/assets/images/large/houses-full.png" alt="Picture of Houses with Music Notes">
 			</div>
 			<div class="houses">
 				<div class="houses__left">
@@ -727,7 +726,13 @@
 			<div class="lightbox__overlay__container">
 				<div class="lightbox__overlay__container__item" data-lightbox-number="1" data-lightbox-name="Onboarding">
 					<div class="lightbox__overlay__container__item__image">
-						<img src="/assets/images/source/projects/profile/01-teach-with-us.png">
+						<picture>
+					      <source srcset="assets/images/medium/projects/profile/01-teach-with-us.jpg 1420w" media="(min-width: 1100px)">
+					      <source srcset="assets/images/small/projects/profile/01-teach-with-us.jpg 1100w" media="(min-width: 800px)">
+					      <source srcset="assets/images/xsmall/projects/profile/01-teach-with-us.jpg 700w" media="(min-width: 450px)">
+					      <img srcset="assets/images/xxsmall/projects/profile/01-teach-with-us.jpg 450w" alt="Onboarding Screenshot" class="large-hero__image">
+					    </picture>
+
 					</div>
 					<div class="lightbox__overlay__container__item__description">
 						<p>This is the landing page for creating a free teacher profile at YourMusicLessons. Only an email address is required to get started. A password is created later when the teacher's email address is confirmed. <a href="https://yourmusiclessons.com/teach-with-us" target="_blank">Click here</a> to see the full page.</p>
