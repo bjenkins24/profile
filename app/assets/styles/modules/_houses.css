@@ -37,7 +37,7 @@
     display: none;
 
     &__full {
-        background: url('$img-dir-xxsmall/houses-full.png') bottom no-repeat;
+        background: url('$img-dir-houses/xxsmall/houses-full.png') bottom no-repeat;
         background-size: 100%;
         width: 100%;
         height: 100vh;
@@ -46,12 +46,12 @@
         bottom: 0;
 
         @mixin atXSmall {
-            background: url('$img-dir-xsmall/houses-full.png') bottom no-repeat;
+            background: url('$img-dir-houses/xsmall/houses-full.png') bottom no-repeat;
             background-size: 100%;
         }
 
         @mixin atSmall {
-            background: url('$img-dir-small/houses-full.png') bottom no-repeat;
+            background: url('$img-dir-houses/small/houses-full.png') bottom no-repeat;
             background-size: 100%;
         }
 
@@ -92,58 +92,58 @@
         position: fixed;
         bottom: 0;
         z-index: 2;
-        background: url('$img-dir-xsmall/houses-left.png');
+        background: url('$img-dir-houses/xsmall/houses-left.png');
         width: 150px;
         height: 124px;
 
         @mixin atHouseSmall {
-            background: url('$img-dir-small/houses-left.png');
+            background: url('$img-dir-houses/small/houses-left.png');
             width: 550px;
             height: 470px;
         }
 
         @mixin atHouseMedium {
-            background: url('$img-dir-medium/houses-left.png');
+            background: url('$img-dir-houses/medium/houses-left.png');
             background-size: cover;
             width: 700px;
             height: 590px;
         }
 
         @mixin atHouseLarge {
-            background: url('$img-dir-large/houses-left.png');
+            background: url('$img-dir-houses/large/houses-left.png');
             width: 823px;
             height: 704px;
         }
     }
 
     &__middle {
-        background: url('$img-dir-xsmall/houses-middle.png');
+        background: url('$img-dir-houses/xsmall/houses-middle.png');
         height: 93px;
         width: 100%;
         position: fixed;
         z-index: 1;
 
         @mixin atHouseSmall {
-            background: url('$img-dir-small/houses-middle.png');
+            background: url('$img-dir-houses/small/houses-middle.png');
             height: 328px;
             bottom: 0;
         }
 
         @mixin atHouseMedium {
-            background: url('$img-dir-medium/houses-middle.png');
+            background: url('$img-dir-houses/medium/houses-middle.png');
             height: 415px;
             bottom: -8px;
         }
 
         @mixin atHouseLarge {
-            background: url('$img-dir-large/houses-middle.png');
+            background: url('$img-dir-houses/large/houses-middle.png');
             height: 488px;
             bottom: 0;
         }
     }
 
     &__right {
-        background: url('$img-dir-xsmall/houses-right.png');
+        background: url('$img-dir-houses/xsmall/houses-right.png');
         width: 150px;
         height: 124px;
         position: fixed;
@@ -151,21 +151,21 @@
         z-index: 2;
 
         @mixin atHouseSmall {
-            background: url('$img-dir-small/houses-right.png');
+            background: url('$img-dir-houses/small/houses-right.png');
             width: 550px;
             height: 406px;
             bottom: 0;
         }
 
         @mixin atHouseMedium {
-            background: url('$img-dir-medium/houses-right.png');
+            background: url('$img-dir-houses/medium/houses-right.png');
             width: 700px;
             height: 517px;
             bottom: -9px;
         }
 
         @mixin atHouseLarge {
-            background: url('$img-dir-large/houses-right.png');
+            background: url('$img-dir-houses/large/houses-right.png');
             width: 823px;
             height: 608px;
             bottom: 0;

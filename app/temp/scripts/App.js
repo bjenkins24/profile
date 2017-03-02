@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11170,6 +11170,30 @@ var Lightbox = function () {
         }
 
         /**
+         * Retrieve the open lightbox
+         * @return {Object} the lightbox element
+         */
+
+    }, {
+        key: 'getOpenLightbox',
+        value: function getOpenLightbox() {
+            return (0, _jquery2.default)('.' + this.overlayClass + '--open');
+        }
+
+        /**
+         * Get the item object
+         * @param {Number} number - The item number
+         * @return {Object} - return the item object
+         */
+
+    }, {
+        key: 'getItem',
+        value: function getItem(number) {
+            var lightbox = this.getOpenLightbox();
+            return lightbox.find('.' + this.itemClass + '[data-lightbox-number="' + number + '"]');
+        }
+
+        /**
          * Add or remove the close button depending on if it exists or not
          */
 
@@ -11291,8 +11315,8 @@ var Lightbox = function () {
     }, {
         key: 'open',
         value: function open(e) {
-            var item = this.getLightbox(e.currentTarget);
-            item.addClass(this.overlayClass + '--open');
+            var lightbox = this.getLightbox(e.currentTarget);
+            lightbox.addClass(this.overlayClass + '--open');
 
             this.addRemoveElements();
 
@@ -11354,11 +11378,39 @@ var Lightbox = function () {
         value: function switchImage(number) {
             this.closeAllImages();
 
-            var nextImage = (0, _jquery2.default)('.' + this.itemClass + '[data-lightbox-number="' + number + '"]');
+            var nextImage = this.getItem(number);
 
             nextImage.addClass(this.itemClass + '--open');
 
+            this.lazyLoad(number);
             this.switchNav(number);
+        }
+
+        /**
+         * Lazy load the images in the lightbox. This also loads the following
+         * image at the same time to make sure there is no waiting for images
+         * img elements MUST have at least a data-src attribute for this to work
+         * @param {Number} number - The number of the item that is being targeted
+         */
+
+    }, {
+        key: 'lazyLoad',
+        value: function lazyLoad(number) {
+            for (var i = number; i < number + 2; i++) {
+                var item = this.getItem(i);
+                var target = item.find('img');
+
+                if (target.length > 0 && target[0].hasAttribute('data-src')) {
+                    var src = target.data('src');
+                    var srcSet = target.data('srcset');
+
+                    target.removeAttr('data-src');
+                    target.removeAttr('data-srcset');
+
+                    target.attr('src', src);
+                    target.attr('srcset', srcSet);
+                }
+            }
         }
 
         /**
@@ -11412,11 +11464,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 __webpack_require__(1);
 
-__webpack_require__(9);
+__webpack_require__(11);
 
-__webpack_require__(8);
+__webpack_require__(10);
 
-var _MobileMenu = __webpack_require__(7);
+var _MobileMenu = __webpack_require__(9);
 
 var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
@@ -12034,7 +12086,9 @@ var ZoomHover = function () {
 exports.default = ZoomHover;
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12113,7 +12167,7 @@ var MobileMenu = function () {
 exports.default = MobileMenu;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12461,7 +12515,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /*!
@@ -12586,7 +12640,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 ;
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
