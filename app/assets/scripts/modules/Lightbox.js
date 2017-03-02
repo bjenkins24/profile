@@ -90,6 +90,25 @@ class Lightbox {
     }
 
     /**
+     * Retrieve the open lightbox
+     * @return {Object} the lightbox element
+     */
+    getOpenLightbox() {
+        return $(`.${this.overlayClass}--open`);
+    }
+
+    /**
+     * Get the item object
+     * @param {Number} number - The item number
+     * @return {Object} - return the item object
+     */
+    getItem(number) {
+        let lightbox = this.getOpenLightbox();
+        return lightbox
+            .find(`.${this.itemClass}[data-lightbox-number="${number}"]`);
+    }
+
+    /**
      * Add or remove the close button depending on if it exists or not
      */
     addRemoveCloseButton() {
@@ -196,8 +215,8 @@ class Lightbox {
      * @param {Object} e - event
      */
     open(e) {
-        let item = this.getLightbox(e.currentTarget);
-        item.addClass(`${this.overlayClass}--open`);
+        let lightbox = this.getLightbox(e.currentTarget);
+        lightbox.addClass(`${this.overlayClass}--open`);
 
         this.addRemoveElements();
 
@@ -255,12 +274,37 @@ class Lightbox {
     switchImage(number) {
         this.closeAllImages();
 
-        let nextImage =
-            $(`.${this.itemClass}[data-lightbox-number="${number}"]`);
+        let nextImage = this.getItem(number);
 
         nextImage.addClass(`${this.itemClass}--open`);
 
+        this.lazyLoad(number);
         this.switchNav(number);
+    }
+
+    /**
+     * Lazy load the images in the lightbox. This also loads the following
+     * image at the same time to make sure there is no waiting for images
+     * img elements MUST have at least a data-src attribute for this to work
+     * @param {Number} number - The number of the item that is being targeted
+     */
+    lazyLoad(number) {
+        for (let i = number; i < number+2; i++) {
+            let item = this.getItem(i);
+            let target = item.find('img');
+
+            if (target.length > 0 &&
+                target[0].hasAttribute('data-src')) {
+                let src = target.data('src');
+                let srcSet = target.data('srcset');
+
+                target.removeAttr('data-src');
+                target.removeAttr('data-srcset');
+
+                target.attr('src', src);
+                target.attr('srcset', srcSet);
+            }
+        }
     }
 
     /**

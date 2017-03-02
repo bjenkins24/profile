@@ -85,7 +85,7 @@
     }
 
     &--blue-styled {
-        background: url('$img-dir-source/blue-section.png');
+        background: url('$img-dir/blue-section.jpg');
         color: $white;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 

@@ -7,7 +7,7 @@ cssnano = require('gulp-cssnano'),
 uglify = require('gulp-uglify'),
 browserSync = require('browser-sync').create();
 
-let distFolder = 'docs';
+let distFolder = 'dist';
 
 gulp.task('previewDist', function() {
     browserSync.init({
@@ -18,13 +18,13 @@ gulp.task('previewDist', function() {
     });
 });
 
-gulp.task('deleteDistFolder', ['icons'], function() {
+gulp.task('deleteDistFolder', function() {
     return del('./'+distFolder);
 });
 
 gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
     let pathsToCopy = [
-        './app/**/*', 
+        './app/**/*',
         '!./app/index.html',
         '!./app/assets/images/**',
         '!./app/assets/styles/**',
@@ -38,7 +38,23 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
 });
 
 gulp.task('optimizeImages', ['deleteDistFolder', 'styles', 'scripts'], function() {
-    return gulp.src(['./app/assets/images/**/*', '!./app/assets/images/icons', '!./app/assets/images/icons/**/*'])
+    return gulp.src([
+        './app/assets/images/**/*',
+        '!./app/assets/images/original',
+        '!./app/assets/images/original/**/*',
+        '!./app/assets/images/projects/profile/original',
+        '!./app/assets/images/projects/profile/original/**/*',
+        '!./app/assets/images/projects/phone/original',
+        '!./app/assets/images/projects/phone/original/**/*',
+        '!./app/assets/images/projects/crm/original',
+        '!./app/assets/images/projects/crm/original/**/*',
+        '!./app/assets/images/projects/accounting/original',
+        '!./app/assets/images/projects/accounting/original/**/*',
+        '!./app/assets/images/projects/billing/original',
+        '!./app/assets/images/projects/billing/original/**/*',
+        '!./app/assets/images/projects/replay/original',
+        '!./app/assets/images/projects/replay/original/**/*'
+        ])
         .pipe(imagemin({
             progressive: true,
             interlaced: true,

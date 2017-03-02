@@ -662,9 +662,37 @@ a {
 }
 
 .houses__full {
+  background: url('/assets/images/houses/xxsmall/houses-full.png') bottom no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 100vh;
   display: block;
   position: fixed;
   bottom: 0;
+}
+
+@media (min-width: 600px) {
+
+  .houses__full {
+    background: url('/assets/images/houses/xsmall/houses-full.png') bottom no-repeat;
+    background-size: 100%;
+  }
+}
+
+@media (min-width: 800px) {
+
+  .houses__full {
+    background: url('/assets/images/houses/small/houses-full.png') bottom no-repeat;
+    background-size: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .houses__full {
+    display: none;
+    background: none;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -707,7 +735,7 @@ a {
   position: fixed;
   bottom: 0;
   z-index: 2;
-  background: url('/assets/images/xsmall/houses-left.png');
+  background: url('/assets/images/houses/xsmall/houses-left.png');
   width: 150px;
   height: 124px;
 }
@@ -715,7 +743,7 @@ a {
 @media (min-width: 1200px) {
 
   .houses__left {
-    background: url('/assets/images/small/houses-left.png');
+    background: url('/assets/images/houses/small/houses-left.png');
     width: 550px;
     height: 470px;
   }
@@ -724,7 +752,7 @@ a {
 @media (min-width: 1416px) {
 
   .houses__left {
-    background: url('/assets/images/medium/houses-left.png');
+    background: url('/assets/images/houses/medium/houses-left.png');
     background-size: cover;
     width: 700px;
     height: 590px;
@@ -734,14 +762,14 @@ a {
 @media (min-width: 1664px) {
 
   .houses__left {
-    background: url('/assets/images/large/houses-left.png');
+    background: url('/assets/images/houses/large/houses-left.png');
     width: 823px;
     height: 704px;
   }
 }
 
 .houses__middle {
-  background: url('/assets/images/xsmall/houses-middle.png');
+  background: url('/assets/images/houses/xsmall/houses-middle.png');
   height: 93px;
   width: 100%;
   position: fixed;
@@ -751,7 +779,7 @@ a {
 @media (min-width: 1200px) {
 
   .houses__middle {
-    background: url('/assets/images/small/houses-middle.png');
+    background: url('/assets/images/houses/small/houses-middle.png');
     height: 328px;
     bottom: 0;
   }
@@ -760,7 +788,7 @@ a {
 @media (min-width: 1416px) {
 
   .houses__middle {
-    background: url('/assets/images/medium/houses-middle.png');
+    background: url('/assets/images/houses/medium/houses-middle.png');
     height: 415px;
     bottom: -8px;
   }
@@ -769,14 +797,14 @@ a {
 @media (min-width: 1664px) {
 
   .houses__middle {
-    background: url('/assets/images/large/houses-middle.png');
+    background: url('/assets/images/houses/large/houses-middle.png');
     height: 488px;
     bottom: 0;
   }
 }
 
 .houses__right {
-  background: url('/assets/images/xsmall/houses-right.png');
+  background: url('/assets/images/houses/xsmall/houses-right.png');
   width: 150px;
   height: 124px;
   position: fixed;
@@ -787,7 +815,7 @@ a {
 @media (min-width: 1200px) {
 
   .houses__right {
-    background: url('/assets/images/small/houses-right.png');
+    background: url('/assets/images/houses/small/houses-right.png');
     width: 550px;
     height: 406px;
     bottom: 0;
@@ -797,7 +825,7 @@ a {
 @media (min-width: 1416px) {
 
   .houses__right {
-    background: url('/assets/images/medium/houses-right.png');
+    background: url('/assets/images/houses/medium/houses-right.png');
     width: 700px;
     height: 517px;
     bottom: -9px;
@@ -807,7 +835,7 @@ a {
 @media (min-width: 1664px) {
 
   .houses__right {
-    background: url('/assets/images/large/houses-right.png');
+    background: url('/assets/images/houses/large/houses-right.png');
     width: 823px;
     height: 608px;
     bottom: 0;
@@ -2540,12 +2568,12 @@ li.lightbox__overlay__container__nav--active {
 }
 
 .icon {
-    background: url('/assets/images/icons/sprite.png');
     display: block;
 }
 
 .icon--star {
-  background-size: 75px;
+  background: url('/assets/images/icons/stars.png');
+  background-size: 53px;
   width: 18px;
   height: 18px;
 }
@@ -2553,7 +2581,7 @@ li.lightbox__overlay__container__nav--active {
 @media (min-width: 600px) {
 
   .icon--star {
-    background-size: 85px;
+    background-size: 62px;
     width: 20px;
     height: 20px;
   }
@@ -2768,7 +2796,7 @@ li.lightbox__overlay__container__nav--active {
 }
 
 .page-section--blue-styled {
-  background: url('/assets/images/source/blue-section.png');
+  background: url('/assets/images/blue-section.jpg');
   color: #f6f6f4;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
