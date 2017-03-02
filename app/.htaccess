@@ -1,0 +1,39 @@
+####################
+# GZIP COMPRESSION #
+####################
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript application/x-javascript application/x-httpd-php
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
+Header append Vary User-Agent env=!dont-vary
+
+##################### Remove WWW
+# Ensure no www on all URLs.
+RewriteCond %{HTTP_HOST} ^www.brianjenkins.pro [NC]
+RewriteRule ^(.*)$ http://brianjenkins.pro/$1 [L,R=301]
+
+##################### Browser Caching
+# CACHED FOREVER
+# MOD_REWRITE TO RENAME EVERY CHANGE
+<FilesMatch "\.(js|css|ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$">
+Header set Cache-Control "public"
+Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
+Header unset Last-Modified
+</FilesMatch>
+
+# 1 Day
+<FilesMatch "\.(html|htm|xml|txt|xsl|php)$">
+Header set Cache-Control "max-age=86400, must-revalidate"
+</FilesMatch>
+
+Header set Content-Language "en"
+
+# BEGIN Turn ETags Off
+<ifModule mod_headers.c>
+  Header unset ETag
+</ifModule>
+FileETag None
+# END Turn ETags Off
