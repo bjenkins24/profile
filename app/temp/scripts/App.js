@@ -11401,12 +11401,15 @@ var Lightbox = function () {
                 var target = item.find('img');
 
                 if (target.length > 0 && target[0].hasAttribute('data-src')) {
+                    var sizes = target.data('sizes');
                     var src = target.data('src');
                     var srcSet = target.data('srcset');
 
+                    target.removeAttr('data-sizes');
                     target.removeAttr('data-src');
                     target.removeAttr('data-srcset');
 
+                    target.attr('sizes', sizes);
                     target.attr('src', src);
                     target.attr('srcset', srcSet);
                 }
@@ -11555,14 +11558,7 @@ var Navigation = function () {
             var that = this;
             var headerHeight = -56;
             this.headerLinks.smoothScroll({
-                offset: headerHeight,
-                afterScroll: function afterScroll() {
-                    // For the profile remove the sticky automatically
-                    // helps on mobile
-                    if ((0, _jquery2.default)(this).attr('id') === 'profile-link') {
-                        that.removeSticky();
-                    }
-                }
+                offset: headerHeight
             });
         }
 

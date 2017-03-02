@@ -295,12 +295,15 @@ class Lightbox {
 
             if (target.length > 0 &&
                 target[0].hasAttribute('data-src')) {
+                let sizes = target.data('sizes');
                 let src = target.data('src');
                 let srcSet = target.data('srcset');
 
+                target.removeAttr('data-sizes');
                 target.removeAttr('data-src');
                 target.removeAttr('data-srcset');
 
+                target.attr('sizes', sizes);
                 target.attr('src', src);
                 target.attr('srcset', srcSet);
             }

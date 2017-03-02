@@ -70,14 +70,7 @@ class Navigation {
         let that = this;
         let headerHeight = -56;
         this.headerLinks.smoothScroll({
-            offset: headerHeight,
-            afterScroll: function() {
-                // For the profile remove the sticky automatically
-                // helps on mobile
-                if ($(this).attr('id') === 'profile-link') {
-                    that.removeSticky();
-                }
-            },
+            offset: headerHeight
         });
     }
 
