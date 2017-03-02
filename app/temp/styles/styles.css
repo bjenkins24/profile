@@ -2430,6 +2430,35 @@ li.lightbox__overlay__container__nav--active {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  background-color: #f6f6f4;
+  border-radius: 6px;
+  min-height: 100px;
+}
+
+.lightbox__overlay__container__item__image // Min height for minimizing the image load flash
+                    @mixin atXSmall {
+  min-height: 200px;
+}
+
+@media (min-width: 800px) {
+
+  .lightbox__overlay__container__item__image {
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .lightbox__overlay__container__item__image {
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 1610px) {
+
+  .lightbox__overlay__container__item__image {
+    min-height: 450px;
+  }
 }
 
 .lightbox__overlay__container__item__image img {

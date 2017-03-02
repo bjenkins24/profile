@@ -74,6 +74,26 @@
                     margin-right: auto;
                     display: block;
                     user-select: none;
+                    background-color: $white;
+                    border-radius: 6px;
+                    min-height: 100px;
+
+                    // Min height for minimizing the image load flash
+                    @mixin atXSmall {
+                       min-height: 200px;
+                    }
+
+                    @mixin atSmall {
+                       min-height: 300px;
+                    }
+
+                    @mixin atMedium {
+                       min-height: 400px;
+                    }
+
+                    @mixin atLarge {
+                       min-height: 450px;
+                    }
 
                     & img {
                         width: 100%;
