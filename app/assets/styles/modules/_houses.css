@@ -60,8 +60,8 @@
             background: none;
         }
 
-        @mixin atLandscape {
-           display: none;
+        @mixin atHXSmall {
+            display: none;
         }
     }
 
@@ -118,6 +118,10 @@
             width: 823px;
             height: 704px;
         }
+
+        @mixin atHXSmall {
+            display: none;
+        }
     }
 
     &__middle {
@@ -143,6 +147,10 @@
             background: url('$img-dir-houses/large/houses-middle.png');
             height: 488px;
             bottom: 0;
+        }
+
+        @mixin atHXSmall {
+            display: none;
         }
     }
 
@@ -173,6 +181,10 @@
             width: 823px;
             height: 608px;
             bottom: 0;
+        }
+
+        @mixin atHXSmall {
+            display: none;
         }
     }
 

@@ -53,13 +53,15 @@
         left: 50%;
         transform: translateX(-50%);
         color: #68655e;
+        z-index: 1;
 
         @mixin atSmall {
             top: 7rem;
         }
 
-        @mixin atLandscape {
-            top: 2rem;
+        @mixin atHXSmall {
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         &__title {

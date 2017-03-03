@@ -568,6 +568,7 @@ a {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   color: #68655e;
+  z-index: 1;
 }
 
 @media (min-width: 800px) {
@@ -577,10 +578,12 @@ a {
   }
 }
 
-@media screen and (orientation: landscape) {
+@media (max-height: 650px) {
 
   .large-hero__text-content {
-    top: 2rem;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
   }
 }
 
@@ -702,7 +705,7 @@ a {
   }
 }
 
-@media screen and (orientation: landscape) {
+@media (max-height: 650px) {
 
   .houses__full {
     display: none;
@@ -782,6 +785,13 @@ a {
   }
 }
 
+@media (max-height: 650px) {
+
+  .houses__left {
+    display: none;
+  }
+}
+
 .houses__middle {
   background: url('/assets/images/houses/xsmall/houses-middle.png');
   height: 93px;
@@ -814,6 +824,13 @@ a {
     background: url('/assets/images/houses/large/houses-middle.png');
     height: 488px;
     bottom: 0;
+  }
+}
+
+@media (max-height: 650px) {
+
+  .houses__middle {
+    display: none;
   }
 }
 
@@ -853,6 +870,13 @@ a {
     width: 823px;
     height: 608px;
     bottom: 0;
+  }
+}
+
+@media (max-height: 650px) {
+
+  .houses__right {
+    display: none;
   }
 }
 
