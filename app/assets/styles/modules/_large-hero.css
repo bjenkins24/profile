@@ -58,6 +58,10 @@
             top: 7rem;
         }
 
+        @mixin atLandscape {
+            top: 2rem;
+        }
+
         &__title {
             text-transform: uppercase;
             font-weight: 500;

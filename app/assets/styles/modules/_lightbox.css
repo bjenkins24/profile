@@ -42,8 +42,10 @@
                 display: none;
                 margin-bottom: 1rem;
 
-                @mixin atMedium {
-                    display: block;
+                @mixin atHSmall {
+                    @mixin atMedium {
+                        display: block;
+                    }
                 }
 
                 li {

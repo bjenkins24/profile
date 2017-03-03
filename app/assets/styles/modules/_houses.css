@@ -59,6 +59,10 @@
             display: none;
             background: none;
         }
+
+        @mixin atLandscape {
+           display: none;
+        }
     }
 
     @mixin atHouseSmall {

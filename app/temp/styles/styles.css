@@ -577,6 +577,13 @@ a {
   }
 }
 
+@media screen and (orientation: landscape) {
+
+  .large-hero__text-content {
+    top: 2rem;
+  }
+}
+
 .large-hero__text-content__title {
   text-transform: uppercase;
   font-weight: 500;
@@ -692,6 +699,13 @@ a {
   .houses__full {
     display: none;
     background: none;
+  }
+}
+
+@media screen and (orientation: landscape) {
+
+  .houses__full {
+    display: none;
   }
 }
 
@@ -2392,10 +2406,13 @@ a {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 1200px) {
+@media (min-height: 700px) {
 
-  .lightbox__overlay__container__nav {
-    display: block;
+  @media (min-width: 1200px) {
+
+    .lightbox__overlay__container__nav {
+      display: block;
+    }
   }
 }
 

@@ -4,14 +4,14 @@
     }
 }
 
-@define-mixin atHXSmall {
-    @media (min-height: 240px) {
+@define-mixin atHSmall {
+    @media (min-height: 700px) {
         @mixin-content;
     }
 }
 
-@define-mixin atHSmall {
-    @media (min-height: 500px) {
+@define-mixin atLandscape {
+    @media screen and (orientation: landscape) {
         @mixin-content;
     }
 }
