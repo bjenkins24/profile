@@ -12,8 +12,10 @@ Header append Vary User-Agent env=!dont-vary
 
 ##################### Remove WWW
 # Ensure no www on all URLs.
-RewriteCond %{HTTP_HOST} ^www.brianjenkins.pro [NC]
-RewriteRule ^(.*)$ http://brianjenkins.pro/$1 [L,R=301]
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 ##################### Browser Caching
 # CACHED FOREVER
