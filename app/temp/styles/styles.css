@@ -580,10 +580,13 @@ a {
 
 @media (max-height: 650px) {
 
-  .large-hero__text-content {
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+  @media screen and (orientation: landscape) {
+
+    .large-hero__text-content {
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
   }
 }
 
@@ -707,8 +710,11 @@ a {
 
 @media (max-height: 650px) {
 
-  .houses__full {
-    display: none;
+  @media screen and (orientation: landscape) {
+
+    .houses__full {
+      display: none;
+    }
   }
 }
 

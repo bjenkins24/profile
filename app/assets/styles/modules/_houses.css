@@ -61,7 +61,9 @@
         }
 
         @mixin atHXSmall {
-            display: none;
+            @mixin atLandscape {
+                display: none;
+            }
         }
     }
 
