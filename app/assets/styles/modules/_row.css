@@ -31,11 +31,11 @@
         margin-bottom: 2rem;
     }
 
-    &--b-margin-until-medium {
+    &--b-margin-until-xsmall {
         margin-bottom: 2rem;
     }
 
-    &__no-margin-until-medium {
+    &--no-margin-until-medium {
         margin-bottom: 0;
     }
 
@@ -56,6 +56,10 @@
 
         &--no-gutters-until-xsmall > div {
             padding-right: 65px;
+        }
+
+        &--b-margin-until-xsmall {
+            margin-bottom: 0;
         }
     }
 
@@ -92,12 +96,8 @@
     }
 
     @mixin atMedium {
-        &__no-margin-until-medium {
+        &--no-margin-until-medium {
             margin-bottom: 2rem;
-        }
-
-        &__b-margin-until-medium {
-            margin-bottom: 0;
         }
 
         &__medium-3 {

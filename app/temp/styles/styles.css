@@ -2141,11 +2141,11 @@ a {
   margin-bottom: 2rem;
 }
 
-.row--b-margin-until-medium {
+.row--b-margin-until-xsmall {
   margin-bottom: 2rem;
 }
 
-.row__no-margin-until-medium {
+.row--no-margin-until-medium {
   margin-bottom: 0;
 }
 
@@ -2167,6 +2167,10 @@ a {
 
   .row--no-gutters-until-xsmall > div {
     padding-right: 65px;
+  }
+
+  .row--b-margin-until-xsmall {
+    margin-bottom: 0;
   }
 }
 
@@ -2205,12 +2209,8 @@ a {
 
 @media (min-width: 1200px) {
 
-  .row__no-margin-until-medium {
+  .row--no-margin-until-medium {
     margin-bottom: 2rem;
-  }
-
-  .row__b-margin-until-medium {
-    margin-bottom: 0;
   }
 
   .row__medium-3 {
@@ -3137,6 +3137,15 @@ li.lightbox__overlay__container__nav--active {
   margin-bottom: 0.3rem;
 }
 
+.profile__github {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.profile__github__description {
+  font-size: 0.7rem;
+}
+
 .experience {
     z-index: 3;
     position: relative;
@@ -3290,9 +3299,5 @@ li.lightbox__overlay__container__nav--active {
 
 .contact__content__item__icon {
   width: 25px;
-  text-align: center;
-}
-
-.contact__btn {
   text-align: center;
 }

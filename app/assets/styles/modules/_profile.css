@@ -69,4 +69,13 @@
             }
         }
     }
+
+    &__github {
+        text-align: center;
+        margin-top: 1rem;
+
+        &__description {
+            font-size: 0.7rem;
+        }
+    }
 }
